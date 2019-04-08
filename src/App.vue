@@ -13,15 +13,21 @@
   
     <div class="content">
       <div class="amount">
-        <label for="amount_input">Enter here the amount of the ad:</label>
+        <label for="amount_input">Enter the amount of the ad:</label>
         <input type="number" placeholder="Amount" v-model="amount" />
-        <input type="submit" value="Help me!" v-on:click="process" />
+        <input type="submit" value="Calculate" v-on:click="process" />
       </div>
       <div class="result" v-if="offer && !loading">
         <p>Based on our recommendations and our secret algorithm, we advice you to send this message:</p>
         <p class="message" v-html="message"></p>
         <button class="button" v-clipboard="message">Copy</button>
       </div>
+    </div>
+
+    <div class="footer">
+      <p>You want to buy something on Gumtree, but you don't know how much to offer? Too low? Too high? We have the solution for your problem!</p>
+      <p>Our engineers team built for you an powerfull algorithm to get the perfect <b>Gumtree Style</b> offer.</p>
+      <p>Just enter the amount of the ad and start saving money.</p>
     </div>
   
     <transition name="fade">
@@ -217,6 +223,11 @@ input[type="submit"] {
   }
 }
 
+.footer {
+  margin: 20px auto;
+  max-width: 800px;
+  text-align: center;
+}
 .overlay {
   position: absolute;
   top: 0;

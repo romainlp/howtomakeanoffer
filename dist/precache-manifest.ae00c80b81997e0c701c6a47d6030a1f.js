@@ -1,11 +1,11 @@
 self.__precacheManifest = [
   {
-    "revision": "79320356170995866c47",
-    "url": "/howtomakeanoffer/css/app.18d4ae5a.css"
+    "revision": "5659e4d314f55bad6333",
+    "url": "/howtomakeanoffer/css/app.4ebe814e.css"
   },
   {
-    "revision": "79320356170995866c47",
-    "url": "/howtomakeanoffer/js/app.be6ff66a.js"
+    "revision": "5659e4d314f55bad6333",
+    "url": "/howtomakeanoffer/js/app.fccc7d48.js"
   },
   {
     "revision": "cf1ba1b801455a661110",
@@ -16,7 +16,7 @@ self.__precacheManifest = [
     "url": "/howtomakeanoffer/img/logo.82b9c7a5.png"
   },
   {
-    "revision": "1de46099b9d897a42dbda174205e3f63",
+    "revision": "17598d548c21c9537c2a49c61ab13a76",
     "url": "/howtomakeanoffer/index.html"
   },
   {

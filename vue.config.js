@@ -1,4 +1,6 @@
 module.exports = {
   lintOnSave: false,
-  publicPath: '/howtomakeanoffer/'
+  publicPath: process.env.NODE_ENV === 'production'
+    ? '/howtomakeanoffer/'
+    : '/'
 }
