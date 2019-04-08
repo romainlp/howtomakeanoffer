@@ -52,7 +52,7 @@ export default {
       if (undefined === this.amount) {
         console.log('Please enter an amount')
       } else {
-        this.offer = (this.amount / 2) + (this.amount * 0.09);
+        this.offer = Math.round((this.amount / 2) + (this.amount * 0.09));
         this.message = "Hi there! I'd like to offer " + this.offer + "$, cash, NOW!!!"
       }
       setTimeout(() => {
