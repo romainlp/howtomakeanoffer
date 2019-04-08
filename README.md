@@ -1,5 +1,14 @@
 # howtomakeanoffer
 
+## Why?
+
+You want to buy something on Gumtree, but you don't know how much to offer? Too low? Too high?
+We have the solution for you problem!
+
+Our engineers team built for you an powerfull algorithm to get the perfect **Gumtree Style** offer.
+
+Just enter the amount of the ad and start saving money.
+
 ## Project setup
 ```
 npm install
