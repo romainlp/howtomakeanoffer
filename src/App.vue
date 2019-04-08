@@ -3,7 +3,7 @@
   
     <header>
       <div class="left">
-        <img alt="Vue logo" src="./assets/logo.png">
+        <img alt="Vue logo" src="./assets/logo.svg">
         <h1>howtomakeanoffer<span>.com.au</span></h1>
       </div>
       <div class="right">
