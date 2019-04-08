@@ -27,7 +27,7 @@
     <transition name="fade">
       <div v-if="loading" class="overlay">
         <div class="content">
-          <p>We are currently processing your datas, please wait...</p>
+          <p>We are currently processing your data, please wait...</p>
         </div>
       </div>
     </transition>
