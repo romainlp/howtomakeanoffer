@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+  
     <header>
       <div class="left">
         <img alt="Vue logo" src="./assets/logo.png">
@@ -9,6 +10,7 @@
         <h2>Get what you want, <span>cash</span>, <span>now</span></h2>
       </div>
     </header>
+  
     <div class="content">
       <div class="amount">
         <label for="amount_input">Enter here the amount of the ad:</label>
@@ -21,6 +23,7 @@
         <button class="button" v-clipboard="message">Copy</button>
       </div>
     </div>
+  
     <transition name="fade">
       <div v-if="loading" class="overlay">
         <div class="content">
