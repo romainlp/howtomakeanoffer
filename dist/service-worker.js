@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/howtomakeanoffer/precache-manifest.ae00c80b81997e0c701c6a47d6030a1f.js"
+  "/howtomakeanoffer/precache-manifest.269d09ee331e42e6d000a4cce3a8c1b5.js"
 );
 
 workbox.core.setCacheNameDetails({prefix: "howtomakeanoffer"});
