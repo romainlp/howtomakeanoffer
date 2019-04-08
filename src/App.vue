@@ -3,7 +3,7 @@
   
     <header>
       <div class="left">
-        <img alt="Vue logo" src="./assets/logo.png">
+        <img alt="Vue logo" src="./assets/logo.svg">
         <h1>howtomakeanoffer<span>.com.au</span></h1>
       </div>
       <div class="right">
@@ -49,6 +49,7 @@ export default {
           amount: undefined,
           loading: false,
           offer: undefined,
+          unit: '$',
           message: ''
       }
   },
@@ -58,8 +59,24 @@ export default {
       if (undefined === this.amount) {
         console.log('Please enter an amount')
       } else {
-        this.offer = Math.round((this.amount / 2) + (this.amount * 0.09));
-        this.message = "Hi there! I'd like to offer " + this.offer + "$, cash, NOW!!!"
+        this.unit = '$'
+        if (this.amount > 20) {
+          // More than 20$, rounds to 10$ note
+          this.offer = (this.amount / 2) + (this.amount * 0.09)
+          this.offer = Math.ceil((this.offer + 1) / 10) * 10
+        } else if (this.amount > 6) {
+          // Between 6$ and 20$, rounds to 5$ note
+          this.offer = Math.ceil((this.amount / 2) / 5 ) * 5
+        } else if (this.amount > 1) {
+          // Between 1$ and 6$, rounds to 1$ coin
+          this.offer = Math.round((this.amount / 2) + (this.amount * 0.09))
+        } else {
+          // Otherwise you get silver
+          this.offer = (this.amount / 2) + (this.amount * 0.09)
+          this.offer = Math.ceil(this.offer * 10) * 10
+          this.unit = 'cents'
+        }
+        this.message = "Hi there! I'd like to offer " + this.offer + this.unit + ", cash, NOW!!!"
       }
       setTimeout(() => {
         this.loading = false
