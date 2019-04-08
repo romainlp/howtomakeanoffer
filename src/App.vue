@@ -59,7 +59,6 @@ export default {
       if (undefined === this.amount) {
         console.log('Please enter an amount')
       } else {
-        this.unit = '$'
         if (this.amount > 20) {
           // More than 20$, rounds to 10$ note
           this.offer = (this.amount / 2) + (this.amount * 0.09)
@@ -161,6 +160,7 @@ header {
     height: 38px;
     float: left;
     margin-right: 5px;
+    transform: rotate(180deg);
   }
 }
 h1 {
