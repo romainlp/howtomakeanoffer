@@ -12,7 +12,7 @@
       <div class="result" v-if="offer && !loading">
         <p>Based on our recommendations and our secret algorithm, we advice you to send this message:</p>
         <blockquote v-html="message" />
-        <button class="button" v-on:click="toggleCopy" v-clipboard="message">{{ copyButtonText }}</button>
+        <button class="button" v-on:click="toggleCopy">{{ copyButtonText }}</button>
       </div>
     </div>
 
@@ -70,6 +70,7 @@ export default {
       }, 2000)
     },
     toggleCopy () {
+      this.$copyText(this.message)
       this.disableCopy = true
       this.copyButtonText = 'Copied'
     }
