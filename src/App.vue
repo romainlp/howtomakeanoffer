@@ -1,57 +1,60 @@
 <template>
   <div id="app">
   
-    <header>
-      <div class="left">
-        <img alt="Vue logo" src="./assets/logo.svg">
-        <h1>howtomakeanoffer<span>.com.au</span></h1>
-      </div>
-      <div class="right">
-        <h2>Get what you want, <span>cash</span>, <span>now</span></h2>
-      </div>
-    </header>
+    <Header />
   
     <div class="content">
       <div class="amount">
         <label for="amount_input">Enter the amount of the ad:</label>
-        <input type="number" placeholder="Amount" v-model="amount" />
+        <input type="number" placeholder="Amount" v-on:keyup.enter="process" v-model="amount" />
         <input type="submit" value="Calculate" v-on:click="process" />
       </div>
       <div class="result" v-if="offer && !loading">
         <p>Based on our recommendations and our secret algorithm, we advice you to send this message:</p>
-        <p class="message" v-html="message"></p>
-        <button class="button" v-clipboard="message">Copy</button>
+        <blockquote v-html="message" />
+        <button class="button" v-on:click="toggleCopy" v-clipboard="message">{{ copyButtonText }}</button>
       </div>
     </div>
 
-    <div class="footer">
-      <p>You want to buy something on Gumtree, but you don't know how much to offer? Too low? Too high? We have the solution for your problem!</p>
-      <p>Our engineers team built for you an powerfull algorithm to get the perfect <b>Gumtree Style</b> offer.</p>
-      <p>Just enter the amount of the ad and start saving money.</p>
-    </div>
+    <Footer />
+
+    <Loader v-if="loading" message="We are currently processing your data, please wait..." />
   
-    <transition name="fade">
-      <div v-if="loading" class="overlay">
-        <div class="content">
-          <p>We are currently processing your data, please wait...</p>
-        </div>
-      </div>
-    </transition>
   </div>
 </template>
 
 <script>
-import { setTimeout } from 'timers';
+import Header from '@/components/Header.vue'
+import Footer from '@/components/Footer.vue'
+import Loader from '@/components/Loader.vue'
+import Offer from '@/services/Offer'
+
 export default {
   name: 'app',
+  components: {
+    Header,
+    Footer,
+    Loader
+  },
   data () {
       return {
           amount: undefined,
           loading: false,
           offer: undefined,
-          unit: '$',
-          message: ''
+          message: '',
+          disableCopy: false,
+          copyButtonText: 'Copy'
       }
+  },
+  watch: {
+    amount (newAmount, oldAmount) {
+      if (newAmount != oldAmount) {
+        this.offer = undefined
+        this.message = ''
+        this.copyButtonText = 'Copy'
+        this.disableCopy = false
+      }
+    }
   },
   methods: {
     process () {
@@ -59,27 +62,16 @@ export default {
       if (undefined === this.amount) {
         console.log('Please enter an amount')
       } else {
-        if (this.amount > 20) {
-          // More than 20$, rounds to 10$ note
-          this.offer = (this.amount / 2) + (this.amount * 0.09)
-          this.offer = Math.ceil((this.offer + 1) / 10) * 10
-        } else if (this.amount > 6) {
-          // Between 6$ and 20$, rounds to 5$ note
-          this.offer = Math.ceil((this.amount / 2) / 5 ) * 5
-        } else if (this.amount > 1) {
-          // Between 1$ and 6$, rounds to 1$ coin
-          this.offer = Math.round((this.amount / 2) + (this.amount * 0.09))
-        } else {
-          // Otherwise you get silver
-          this.offer = (this.amount / 2) + (this.amount * 0.09)
-          this.offer = Math.ceil(this.offer * 10) * 10
-          this.unit = 'cents'
-        }
-        this.message = "Hi there! I'd like to offer " + this.offer + this.unit + ", cash, NOW!!!"
+        this.offer = Offer.get(this.amount)
+        this.message = "Hi there! I'd like to offer " + this.offer + ", cash, NOW!!!"
       }
       setTimeout(() => {
         this.loading = false
       }, 2000)
+    },
+    toggleCopy () {
+      this.disableCopy = true
+      this.copyButtonText = 'Copied'
     }
   }
 }
@@ -90,15 +82,7 @@ export default {
  * Variables
  */
 $green: #2d8327;
-/**
- * Animation
- */
-.fade-enter-active, .fade-leave-active {
-  transition: opacity .5s;
-}
-.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
-  opacity: 0;
-}
+
 /**
  * Common styles
  */
@@ -123,10 +107,9 @@ body {
 }
 
 .result {
-  margin-top: 40px;
   background: #fff;
-  max-width: 450px;
-  margin: 40px auto 0;
+  max-width: 500px;
+  margin: 40px auto 40px;
   padding: 40px;
   .button {
     font-size: 16px;
@@ -137,6 +120,13 @@ body {
   .message {
     font-size: 22px;
     font-style: italic;
+  }
+  blockquote {
+    font-size: 22px;
+    font-style: italic;
+    padding: 20px 30px;
+    background: rgba($green, 0.2);
+    border-radius: 20px;
   }
 }
 /**
@@ -245,19 +235,5 @@ input[type="submit"] {
   max-width: 800px;
   text-align: center;
 }
-.overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background: $green;
-  z-index: 10;
-  display: flex;
-  align-items: center;
-  .content {
-    color: #fff;
-    font-size: 36px;
-  }
-}
+
 </style>
