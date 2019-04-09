@@ -1,5 +1,7 @@
 # howtomakeanoffer
 
+[![Build Status](https://travis-ci.org/romainlp/howtomakeanoffer.svg?branch=master)](https://travis-ci.org/romainlp/howtomakeanoffer)
+
 ## Why?
 
 You want to buy something on Gumtree, but you don't know how much to offer? Too low? Too high?
