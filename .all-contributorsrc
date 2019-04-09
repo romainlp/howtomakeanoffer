@@ -1,0 +1,23 @@
+{
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": false,
+  "contributors": [
+    {
+      "login": "elgandoz",
+      "name": "elgandoz",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/5859926?v=4",
+      "profile": "https://github.com/elgandoz",
+      "contributions": [
+        "code"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7,
+  "projectName": "howtomakeanoffer",
+  "projectOwner": "romainlp",
+  "repoType": "github",
+  "repoHost": "https://github.com"
+}
