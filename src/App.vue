@@ -7,24 +7,19 @@
       <div class="amount">
         <label for="platform">What Platform are you Using?</label>
         <div class="platforms">
-          <button class="btn-platform"
-            v-bind:class="{ 'selected': offer_platform == 0 }"
-            v-on:click="offer_platform = 0">
-            <img src="./assets/logo-gumtree.png" />
-          </button>
-          <button class="btn-platform"
-            v-bind:class="{ 'selected': offer_platform == 1 }"
-            v-on:click="offer_platform = 1">
-            <img src="./assets/logo-ebay.jpg" />
-          </button>
-          <button class="btn-platform"
-            v-bind:class="{ 'selected': offer_platform == 2 }"
-            v-on:click="offer_platform = 2">
-            <img src="./assets/logo-craigslist.jpg" />
+          <button 
+            v-for="platform in platforms" 
+            v-bind:key="platform.id"
+            class="btn-platform"
+            v-on:click="offer_platform = platform.id"
+            v-bind:class="{ 'selected': offer_platform == platform.id }"
+            >
+            <img :src="platform.logo" />
           </button>
         </div>
       </div>
     </div>
+
     <div class="content">
       <div class="amount">
         <label for="amount_input">Enter the amount of the ad:</label>
@@ -33,7 +28,7 @@
       </div>
       <div class="result" v-if="offer && !loading">
         <p>Based on our recommendations and our secret algorithm, we advice you to send this message:</p>
-        <blockquote class="newlines" v-html="message" />
+        <blockquote class="bubble" v-html="message" />
         <button class="button" v-on:click="toggleCopy">{{ copyButtonText }}</button>
       </div>
     </div>
@@ -66,20 +61,42 @@ export default {
           offer_platform: 0,
           message: '',
           disableCopy: false,
-          copyButtonText: 'Copy'
+          copyButtonText: 'Copy',
+          platforms: {
+            'Gumtree': {
+              id: 0,
+              logo: require('./assets/logo-gumtree.png')
+            },
+            'eBay': {
+              id: 1,
+              logo: require('./assets/logo-ebay.jpg')
+            },
+            'Craigslist': {
+              id: 2,
+              logo: require('./assets/logo-craigslist.jpg')
+            },
+          }
       }
   },
   watch: {
     amount (newAmount, oldAmount) {
       if (newAmount != oldAmount) {
-        this.offer = undefined
-        this.message = ''
-        this.copyButtonText = 'Copy'
-        this.disableCopy = false
+        this.reset()
+      }
+    },
+    offer_platform (newPlatform, oldPlatform) {
+      if (newPlatform != oldPlatform) {
+        this.reset()
       }
     }
   },
   methods: {
+    reset () {
+      this.offer = undefined
+      this.message = ''
+      this.copyButtonText = 'Copy'
+      this.disableCopy = false
+    },
     process () {
       this.loading = true
       if (undefined === this.amount) {
@@ -89,7 +106,6 @@ export default {
         const platform = this.getPlatform();
         this.message = `Hi there! 
 I saw your ${platform} ad, and I'd like to offer ${this.offer}, cash, NOW!!!
-Cheers Buddy!
 `
       }
       setTimeout(() => {
@@ -148,15 +164,18 @@ body {
     width: 75px;
   }
   .btn-platform {
-    background-color: white;
+    background-color: #fff;
     margin: 5px;
     border: none;
-    box-shadow: 0px 4px 7px -3px black;
     transition: all 0.5s;
-  }
-  .selected {
-    box-shadow: 0px 0px 12px 3px $green;
-    transform: scale(1.1);
+    padding: 10px 20px;
+    border: 2px solid #fff;
+    border-radius: 4px;
+    outline: none;
+    &.selected {
+      transform: scale(1.1);
+      border: 2px solid $green;
+    }
   }
 }
 .result {
@@ -182,7 +201,7 @@ body {
     border-radius: 20px;
   }
 }
-.newlines {
+.bubble {
   white-space: pre-wrap;
   text-align: left;
 }
