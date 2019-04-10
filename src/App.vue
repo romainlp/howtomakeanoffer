@@ -5,13 +5,35 @@
   
     <div class="content">
       <div class="amount">
+        <label for="platform">What Platform are you Using?</label>
+        <div class="platforms">
+          <button class="btn-platform"
+            v-bind:class="{ 'selected': offer_platform == 0 }"
+            v-on:click="offer_platform = 0">
+            <img src="./assets/logo-gumtree.png" />
+          </button>
+          <button class="btn-platform"
+            v-bind:class="{ 'selected': offer_platform == 1 }"
+            v-on:click="offer_platform = 1">
+            <img src="./assets/logo-ebay.jpg" />
+          </button>
+          <button class="btn-platform"
+            v-bind:class="{ 'selected': offer_platform == 2 }"
+            v-on:click="offer_platform = 2">
+            <img src="./assets/logo-craigslist.jpg" />
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="content">
+      <div class="amount">
         <label for="amount_input">Enter the amount of the ad:</label>
         <input type="number" placeholder="Amount" v-on:keyup.enter="process" v-model="amount" />
         <input type="submit" value="Calculate" v-on:click="process" />
       </div>
       <div class="result" v-if="offer && !loading">
         <p>Based on our recommendations and our secret algorithm, we advice you to send this message:</p>
-        <blockquote v-html="message" />
+        <blockquote class="newlines" v-html="message" />
         <button class="button" v-on:click="toggleCopy">{{ copyButtonText }}</button>
       </div>
     </div>
@@ -41,6 +63,7 @@ export default {
           amount: undefined,
           loading: false,
           offer: undefined,
+          offer_platform: 0,
           message: '',
           disableCopy: false,
           copyButtonText: 'Copy'
@@ -63,7 +86,11 @@ export default {
         console.log('Please enter an amount')
       } else {
         this.offer = Offer.get(this.amount)
-        this.message = "Hi there! I'd like to offer " + this.offer + ", cash, NOW!!!"
+        const platform = this.getPlatform();
+        this.message = `Hi there! 
+I saw your ${platform} ad, and I'd like to offer ${this.offer}, cash, NOW!!!
+Cheers Buddy!
+`
       }
       setTimeout(() => {
         this.loading = false
@@ -73,6 +100,15 @@ export default {
       this.$copyText(this.message)
       this.disableCopy = true
       this.copyButtonText = 'Copied'
+    },
+    getPlatform() {
+      switch (this.offer_platform) {
+        case 0: return 'Gumtree'
+        case 1: return 'eBay'
+        case 2: return 'Craigslist'
+        default:
+          return '-'
+      }
     }
   }
 }
@@ -106,7 +142,23 @@ body {
   color: #2c3e50;
   font-size: 16px;
 }
-
+.platforms {
+  display: flex;
+  img {
+    width: 75px;
+  }
+  .btn-platform {
+    background-color: white;
+    margin: 5px;
+    border: none;
+    box-shadow: 0px 4px 7px -3px black;
+    transition: all 0.5s;
+  }
+  .selected {
+    box-shadow: 0px 0px 12px 3px $green;
+    transform: scale(1.1);
+  }
+}
 .result {
   background: #fff;
   max-width: 500px;
@@ -129,6 +181,10 @@ body {
     background: rgba($green, 0.2);
     border-radius: 20px;
   }
+}
+.newlines {
+  white-space: pre-wrap;
+  text-align: left;
 }
 /**
  * Header
