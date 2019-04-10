@@ -13,6 +13,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "benwinding",
+      "name": "Ben Winding",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/11782590?v=4",
+      "profile": "https://benwinding.com",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,
