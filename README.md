@@ -1,6 +1,6 @@
 # howtomakeanoffer
 [![Build Status](https://travis-ci.org/romainlp/howtomakeanoffer.svg?branch=master)](https://travis-ci.org/romainlp/howtomakeanoffer)
-[![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors)
+[![All Contributors](https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square)](#contributors)
 
 ## Why?
 
@@ -45,7 +45,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- prettier-ignore -->
-<table><tr><td align="center"><a href="https://github.com/elgandoz"><img src="https://avatars1.githubusercontent.com/u/5859926?v=4" width="100px;" alt="elgandoz"/><br /><sub><b>elgandoz</b></sub></a><br /><a href="https://github.com/romainlp/howtomakeanoffer/commits?author=elgandoz" title="Code">💻</a></td></tr></table>
+<table><tr><td align="center"><a href="https://github.com/elgandoz"><img src="https://avatars1.githubusercontent.com/u/5859926?v=4" width="100px;" alt="elgandoz"/><br /><sub><b>elgandoz</b></sub></a><br /><a href="https://github.com/romainlp/howtomakeanoffer/commits?author=elgandoz" title="Code">💻</a></td><td align="center"><a href="https://benwinding.com"><img src="https://avatars0.githubusercontent.com/u/11782590?v=4" width="100px;" alt="Ben Winding"/><br /><sub><b>Ben Winding</b></sub></a><br /><a href="https://github.com/romainlp/howtomakeanoffer/commits?author=benwinding" title="Code">💻</a></td></tr></table>
 
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
