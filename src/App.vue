@@ -3,8 +3,7 @@
   
     <Header />
   
-    <div class="content">
-      <div class="amount">
+    <section class="content">
         <label for="platform">What Platform are you Using?</label>
         <div class="platforms">
           <button 
@@ -17,10 +16,9 @@
             <img :src="platform.logo" />
           </button>
         </div>
-      </div>
-    </div>
+    </section>
 
-    <div class="content">
+    <section class="content">
       <div class="amount">
         <label for="amount_input">Enter the amount of the ad:</label>
         <input type="number" placeholder="Amount" v-on:keyup.enter="process" v-model="amount" />
@@ -31,7 +29,7 @@
         <blockquote class="bubble" v-html="message" />
         <button class="button" v-on:click="toggleCopy">{{ copyButtonText }}</button>
       </div>
-    </div>
+    </section>
 
     <Footer />
 
