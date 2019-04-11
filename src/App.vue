@@ -91,10 +91,10 @@ body {
     border: none;
     transition: all 0.5s;
     padding: 10px;
-    border: 2px solid #fff;
+    border: 2px solid #f3f3f3;
     border-radius: 4px;
     outline: none;
-    @media (min-width: $container-width /2) {
+    @media (min-width: $container-width / 2) {
       padding: 10px 20px;
     }
     &:hover {
@@ -108,11 +108,7 @@ body {
 }
 
 /* Result */
-.result {
-  background: #fff;
-  max-width: 500px;
-  margin: 40px auto 40px;
-  padding: 40px;
+.content {
   .button {
     font-size: 16px;
   }
