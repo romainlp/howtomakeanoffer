@@ -134,10 +134,16 @@ export default {
 
 /* Platforms */
 .platforms {
-  display: inline-flex;
   max-width: 519px;
+  display: inline-flex;
+  flex-direction: column;
+  @media (min-width: $container-width) {
+    flex-direction: row;
+  }
   img {
     width: 100%;
+    max-width: 120px;
+    max-height: 25px;
   }
   .btn-platform {
     flex: 1 1 0;
