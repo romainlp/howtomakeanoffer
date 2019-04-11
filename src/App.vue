@@ -38,6 +38,7 @@ body {
   // padding: 100px 0 0 0;
   padding: 0;
   margin: 0;
+  min-height: 8000px;
 }
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;

@@ -21,3 +21,23 @@ export default {
     }
 }
 </script>
+
+<style lang="scss" scoped>
+header {
+    transition: all .3s ease-in-out;
+    &.above-viewport {
+        &:not(.in-viewport) {
+            position: fixed;
+            .right,
+            .left {
+                height: 0px;
+                overflow: hidden;
+                opacity: 0;
+            }
+            nav {
+                padding-top: 0;
+            }
+        }
+    }
+}
+</style>
