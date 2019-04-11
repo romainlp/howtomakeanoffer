@@ -1,0 +1,92 @@
+ /**
+ * Common styles
+ */
+* {
+  box-sizing: border-box;
+}
+html {
+  max-width: 100vw;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+body {
+  background: #f4f4f4;
+  padding: 0;
+  margin: 0;
+  max-width: 100vw;
+}
+#app {
+  font-family: "Avenir", $font-system;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #2c3e50;
+  font-size: 16px;
+  min-height: 100vh;
+  max-width: 100vw;
+  &:before,
+  &:after {
+    content: '';
+    position: absolute;
+    background: rgba($green, 0.1);
+    width: 350px;
+    height: 350px;
+    transform: rotate(30deg);
+    z-index: 0;
+  }
+  &:before {
+    top: 50px;
+    left: -100px;
+  }
+  &:after {
+    bottom: -50px;
+    right: -150px;
+  }
+}
+.content {
+  max-width: $container-width;
+  margin: 0 auto;
+  text-align: center;
+  margin: $gutter auto;
+  padding: 0 $gutter;
+}
+
+/* Elements */
+.button {
+  appearance: none;
+  border-radius: 4px;
+  background: $green;
+  color: #fff;
+  padding: 10px 20px;
+  border: 0px;
+}
+.btn-group {
+  position: relative;
+  display: inline-flex;
+  vertical-align: middle;
+  > * {
+    position: relative;
+    flex: 1 1 auto;
+    padding: 10px 20px;
+    font-size: 15px;
+    line-height: 30px;
+    @media (min-width: $container-width) {
+      font-size: 20px;
+      line-height: 40px;
+    }
+    &:first-child {
+      border-radius: 4px 0 0 4px;
+    }
+    &:last-child {
+      border-radius: 0 4px 4px 0;
+    }
+  }
+}
+
+/* Common page styles */
+.page {
+  position: relative;
+  text-align: center;
+  h1 {
+    margin: 1.5em 0 1em;
+  }
+}

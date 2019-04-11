@@ -1,6 +1,5 @@
 <template>
   <main class="home">
-
     <div class="workflow">
       <section class="content" v-show="section == 0">
         <label for="platform">What platform are you using?</label>
@@ -27,7 +26,7 @@
       </section>
 
       <section class="content" v-show="section == 2">
-        <div v-if="offer && !loading">
+        <div class="result" v-if="offer && !loading">
           <p>Based on our recommendations and our secret algorithm, we advice you to send this message:</p>
           <blockquote class="bubble" v-html="message"/>
           <button class="button" v-on:click="toggleCopy">{{ copyButtonText }}</button>
@@ -41,97 +40,189 @@
 </template>
 
 <script>
-import Loader from '@/components/Loader.vue'
-import Offer from '@/services/Offer'
+import Loader from "@/components/Loader.vue";
+import Offer from "@/services/Offer";
 
 export default {
-  name: 'home',
+  name: "home",
   components: {
     Loader
   },
-  data () {
+  data() {
     return {
       section: 0,
       amount: undefined,
       loading: false,
       offer: undefined,
       selectedPlatform: undefined,
-      message: '',
+      message: "",
       disableCopy: false,
-      copyButtonText: 'Copy',
+      copyButtonText: "Copy",
       platforms: {
-        'Gumtree': {
+        Gumtree: {
           id: 0,
-          logo: require('@/assets/logo-gumtree.png')
+          logo: require("@/assets/logo-gumtree.svg")
         },
-        'eBay': {
+        eBay: {
           id: 1,
-          logo: require('@/assets/logo-ebay.jpg')
+          logo: require("@/assets/logo-ebay.svg")
         },
-        'Craigslist': {
+        Craigslist: {
           id: 2,
-          logo: require('@/assets/logo-craigslist.jpg')
-        },
+          logo: require("@/assets/logo-craigslist.svg")
+        }
       }
-    }
+    };
   },
   watch: {
-    selectedPlatform (newPlatform) {
+    selectedPlatform(newPlatform) {
       if (newPlatform != undefined) {
-        this.section = 1
+        this.section = 1;
       }
     }
   },
   methods: {
-    reset () {
-      this.offer = undefined
-      this.section = 0
-      this.selectedPlatform = undefined
-      this.message = ''
-      this.copyButtonText = 'Copy'
-      this.disableCopy = false
+    reset() {
+      this.offer = undefined;
+      this.section = 0;
+      this.selectedPlatform = undefined;
+      this.message = "";
+      this.copyButtonText = "Copy";
+      this.disableCopy = false;
     },
-    process () {
-      this.loading = true
-      this.section = 2
+    process() {
+      this.loading = true;
+      this.section = 2;
       if (undefined === this.amount) {
-        console.log('Please enter an amount')
+        console.log("Please enter an amount");
       } else {
-        this.offer = Offer.get(this.amount)
+        this.offer = Offer.get(this.amount);
         const platform = this.getPlatform();
         this.message = `Hi there! 
 I saw your ${platform} ad, and I'd like to offer ${this.offer}, cash, NOW!!!
-`
+`;
       }
       setTimeout(() => {
-        this.loading = false
-      }, 2000)
+        this.loading = false;
+      }, 2000);
     },
-    toggleCopy () {
-      this.$copyText(this.message)
-      this.disableCopy = true
-      this.copyButtonText = 'Copied'
+    toggleCopy() {
+      this.$copyText(this.message);
+      this.disableCopy = true;
+      this.copyButtonText = "Copied";
     },
     getPlatform() {
       switch (this.selectedPlatform) {
-        case 0: return 'Gumtree'
-        case 1: return 'eBay'
-        case 2: return 'Craigslist'
+        case 0:
+          return "Gumtree";
+        case 1:
+          return "eBay";
+        case 2:
+          return "Craigslist";
         default:
-          return '-'
+          return "-";
       }
     }
   }
-}
+};
 </script>
 
 <style lang="scss">
+/* Workflow */
 .workflow {
   padding-top: 40px;
   .content {
     background: #fff;
     border-radius: 4px;
     padding: 40px;
+  }
+    label {
+    display: block;
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+}
+
+/* Platforms */
+.platforms {
+  display: inline-flex;
+  max-width: $container-width / 2;
+  img {
+    width: 100%;
+  }
+  .btn-platform {
+    flex: 1 1 0;
+    background-color: #fff;
+    margin: 5px;
+    border: none;
+    transition: all 0.5s;
+    padding: 10px;
+    border: 2px solid #f3f3f3;
+    border-radius: 4px;
+    outline: none;
+    @media (min-width: $container-width / 2) {
+      padding: 10px 20px;
+    }
+    &:hover {
+      cursor: pointer;
+    }
+    &.selected {
+      transform: scale(1.1);
+      border: 2px solid $green;
+    }
+  }
+}
+
+/* Amount */
+.amount {
+  input[type="number"] {
+    border: 1px solid #d3d3d3;
+    outline: none;
+    border-right: 0px;
+    @media (max-width: $container-width - 1) {
+      width: 60%;
+    }
+  }
+  input[type="submit"] {
+    appearance: none;
+    border: 1px solid $green;
+    background: $green;
+    @media (max-width: $container-width - 1) {
+      width: 40%;
+    }
+    color: #fff;
+    transition: all 0.3s ease-in-out;
+    &:hover,
+    &:focus {
+      background-color: rgba($green, 0.9);
+      border-color: rgba($green, 0.9);
+    }
+  }
+}
+
+/* Result */
+.result {
+  .button {
+    font-size: 16px;
+  }
+  p {
+    font-weight: bold;
+  }
+  .message {
+    font-size: 22px;
+    font-style: italic;
+  }
+  blockquote {
+    font-size: 22px;
+    font-style: italic;
+    padding: 20px 30px;
+    background: rgba($green, 0.2);
+    border-radius: 20px;
+  }
+  .bubble {
+    white-space: pre-wrap;
+    text-align: left;
   }
 }
 </style>
