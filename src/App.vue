@@ -23,10 +23,16 @@ export default {
 * {
   box-sizing: border-box;
 }
+html {
+  max-width: 100vw;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
 body {
   background: #f4f4f4;
   padding: 0;
   margin: 0;
+  max-width: 100vw;
 }
 #app {
   font-family: "Avenir", $font-system;
@@ -34,6 +40,26 @@ body {
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
   font-size: 16px;
+  min-height: 100vh;
+  max-width: 100vw;
+  &:before,
+  &:after {
+    content: '';
+    position: absolute;
+    background: rgba($green, 0.1);
+    width: 350px;
+    height: 350px;
+    transform: rotate(30deg);
+    z-index: 0;
+  }
+  &:before {
+    top: 50px;
+    left: -100px;
+  }
+  &:after {
+    bottom: -50px;
+    right: -150px;
+  }
 }
 .content {
   max-width: $container-width;
