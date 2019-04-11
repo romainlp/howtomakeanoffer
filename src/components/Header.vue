@@ -1,18 +1,20 @@
 <template>
   <header v-in-viewport>
-    <div class="left">
-      <img alt="Vue logo" src="../assets/logo.svg">
-      <h1>
-        howtomakeanoffer
-        <span>.com.au</span>
-      </h1>
-    </div>
-    <div class="right">
-      <h2>
-        Get what you want,
-        <span>cash</span>,
-        <span>now</span>
-      </h2>
+    <div class="top">
+      <div class="left">
+        <img alt="Vue logo" src="../assets/logo.svg">
+        <h1>
+            howtomakeanoffer
+            <span>.com.au</span>
+        </h1>
+        </div>
+        <div class="right">
+        <h2>
+            Get what you want,
+            <span>cash</span>,
+            <span>now</span>
+        </h2>
+        </div>
     </div>
     <Navigation />
   </header>
@@ -34,27 +36,31 @@ export default {
  * Header
  */
 header {
-  // position: fixed; // Uncomment above to get fixed header again
   width: 100vw;
   top: 0;
   left: 0;
   right: 0;
   z-index: 20;
-  padding: $gutter;
   background: #fff;
-  text-align: center;
-  @media (min-width: $container-width) {
-    text-align: left;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+  border-bottom: 1px solid rgba(27, 31, 35, 0.1);
+  .top {
+    padding: $gutter;
+    border-bottom: 1px solid rgba(27, 31, 35, 0.1);
+    @media (min-width: $container-width) {
+      text-align: left;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .left {
+        display: flex;
+        img {
+            height: 38px;
+            margin: 0 5px 0 0;
+            transform: rotate(180deg);
+        }
+    }
   }
-  img {
-    height: 38px;
-    margin-right: 5px;
-    transform: rotate(180deg);
-  }
-  box-shadow: 0 1px 3px rgba(27, 31, 35, 0.1);
 }
 h1 {
   position: relative;

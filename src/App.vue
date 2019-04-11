@@ -65,12 +65,15 @@ body {
     border: none;
     transition: all 0.5s;
     padding: 10px;
-    @media (min-width: $container-width /2) {
-      padding: 10px 20px;
-    }
     border: 2px solid #fff;
     border-radius: 4px;
     outline: none;
+    @media (min-width: $container-width /2) {
+      padding: 10px 20px;
+    }
+    &:hover {
+      cursor: pointer;
+    }
     &.selected {
       transform: scale(1.1);
       border: 2px solid $green;

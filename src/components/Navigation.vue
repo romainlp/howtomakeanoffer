@@ -18,8 +18,7 @@ export default {
 nav {
   clear: both;
   display: block;
-  padding: 0px;
-  padding-top: 20px;
+  padding: 20px 30px;
   width: 100%;
   ul {
     margin: 0;
@@ -27,7 +26,7 @@ nav {
     list-style: none;
     li {
       display: inline-block;
-      margin-right: 20px;
+      margin-right: 30px;
       a {
         color: rgba(#000, 0.8);
         text-decoration: none;
