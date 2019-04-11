@@ -112,6 +112,10 @@ export default {
       this.disableCopy = true
       this.copyButtonText = 'Copied'
     }
+  },
+  beforeRouteLeave (to, from, next) {
+    this.reset()
+    next()
   }
 };
 </script>
