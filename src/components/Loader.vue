@@ -19,10 +19,6 @@ export default {
 
 <style lang="scss" scoped>
 /**
- * Variables
- */
-$green: #2d8327;
-/**
  * Animation
  */
 .fade-enter-active, .fade-leave-active {
