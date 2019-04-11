@@ -31,7 +31,7 @@
           <p>Based on our recommendations and our secret algorithm, we advice you to send this message:</p>
           <blockquote class="bubble" v-html="message" />
           <button class="button" v-on:click="toggleCopy">{{ copyButtonText }}</button>
-          <a v-on:click="reset">Restart</a>
+          <button class="button button-outline" v-on:click="reset">Restart</button>
         </div>
       </section>
     </div>
