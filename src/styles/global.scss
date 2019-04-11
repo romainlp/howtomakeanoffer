@@ -4,16 +4,11 @@
 * {
   box-sizing: border-box;
 }
-html {
-  max-width: 100vw;
-  overflow: hidden;
-  // overflow-y: auto;
-}
 body {
   background: #f4f4f4;
   padding: 0;
   margin: 0;
-  max-width: 100vw;
+  overflow-x:hidden;
 }
 #app {
   font-family: 'Avenir', $font-system;
@@ -21,17 +16,16 @@ body {
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
   font-size: 16px;
-  min-height: 100vh;
-  max-width: 100vw;
   &:before,
   &:after {
     content: '';
-    position: absolute;
+    position: fixed;
     background: rgba($green, 0.1);
     width: 350px;
     height: 350px;
     transform: rotate(30deg);
     z-index: 0;
+    transition: all .3s ease-in-out;
   }
   &:before {
     top: 50px;
@@ -68,6 +62,11 @@ body {
   text-align: center;
   margin: $gutter auto;
   padding: 0 $gutter;
+}
+
+main {
+  position: relative;
+  z-index: 1;
 }
 
 /* Elements */
