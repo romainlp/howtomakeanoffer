@@ -1,134 +1,17 @@
 <template>
   <div id="app">
-    <Header/>
-
-    <main>
-      <section class="content">
-        <label for="platform">What Platform are you Using?</label>
-        <div class="platforms">
-          <button
-            v-for="platform in platforms"
-            v-bind:key="platform.id"
-            class="btn-platform"
-            v-on:click="offer_platform = platform.id"
-            v-bind:class="{ 'selected': offer_platform == platform.id }"
-          >
-            <img :src="platform.logo">
-          </button>
-        </div>
-      </section>
-
-      <section class="content">
-        <div class="amount">
-          <label for="amount_input">Enter the amount of the ad:</label>
-          <div class="btn-group">
-            <input type="number" placeholder="Amount" v-on:keyup.enter="process" v-model="amount">
-            <input type="submit" value="Calculate" v-on:click="process">
-          </div>
-        </div>
-        <div class="result" v-if="offer && !loading">
-          <p>Based on our recommendations and our secret algorithm, we advice you to send this message:</p>
-          <blockquote class="bubble" v-html="message"/>
-          <button class="button" v-on:click="toggleCopy">{{ copyButtonText }}</button>
-        </div>
-      </section>
-    </main>
-
-    <Footer/>
-
-    <Loader v-if="loading" message="We are currently processing your data, please wait..."/>
+    <Header />
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
-import Header from "@/components/Header.vue";
-import Footer from "@/components/Footer.vue";
-import Loader from "@/components/Loader.vue";
-import Offer from "@/services/Offer";
+import Header from '@/components/Header.vue'
 
 export default {
   name: "app",
   components: {
-    Header,
-    Footer,
-    Loader
-  },
-  data() {
-    return {
-      amount: undefined,
-      loading: false,
-      offer: undefined,
-      offer_platform: 0,
-      message: "",
-      disableCopy: false,
-      copyButtonText: "Copy",
-      platforms: {
-        Gumtree: {
-          id: 0,
-          logo: require("./assets/logo-gumtree.png")
-        },
-        eBay: {
-          id: 1,
-          logo: require("./assets/logo-ebay.jpg")
-        },
-        Craigslist: {
-          id: 2,
-          logo: require("./assets/logo-craigslist.jpg")
-        }
-      }
-    };
-  },
-  watch: {
-    amount(newAmount, oldAmount) {
-      if (newAmount != oldAmount) {
-        this.reset();
-      }
-    },
-    offer_platform(newPlatform, oldPlatform) {
-      if (newPlatform != oldPlatform) {
-        this.reset();
-      }
-    }
-  },
-  methods: {
-    reset() {
-      this.offer = undefined;
-      this.message = "";
-      this.copyButtonText = "Copy";
-      this.disableCopy = false;
-    },
-    process() {
-      this.loading = true;
-      if (undefined === this.amount) {
-        console.log("Please enter an amount");
-      } else {
-        this.offer = Offer.get(this.amount);
-        const platform = this.getPlatform();
-        this.message = `Hi there! 
-I saw your ${platform} ad, and I'd like to offer ${this.offer}, cash, NOW!!!
-`;
-      }
-      setTimeout(() => {
-        this.loading = false;
-      }, 2000);
-    },
-    toggleCopy() {
-      this.$copyText(this.message);
-      this.disableCopy = true;
-      this.copyButtonText = "Copied";
-    },
-    getPlatform() {
-      switch (this.offer_platform) {
-        case 0:
-          return "Gumtree";
-        case 1:
-          return "eBay";
-        case 2:
-          return "Craigslist";
-        default:
-          return "-";
-      }
-    }
+    Header
   }
 };
 </script>
@@ -140,10 +23,16 @@ I saw your ${platform} ad, and I'd like to offer ${this.offer}, cash, NOW!!!
 * {
   box-sizing: border-box;
 }
+html {
+  max-width: 100vw;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
 body {
   background: #f4f4f4;
   padding: 0;
   margin: 0;
+  max-width: 100vw;
 }
 #app {
   font-family: "Avenir", $font-system;
@@ -151,6 +40,26 @@ body {
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
   font-size: 16px;
+  min-height: 100vh;
+  max-width: 100vw;
+  &:before,
+  &:after {
+    content: '';
+    position: absolute;
+    background: rgba($green, 0.1);
+    width: 350px;
+    height: 350px;
+    transform: rotate(30deg);
+    z-index: 0;
+  }
+  &:before {
+    top: 50px;
+    left: -100px;
+  }
+  &:after {
+    bottom: -50px;
+    right: -150px;
+  }
 }
 .content {
   max-width: $container-width;
@@ -182,12 +91,15 @@ body {
     border: none;
     transition: all 0.5s;
     padding: 10px;
-    @media (min-width: $container-width /2) {
-      padding: 10px 20px;
-    }
-    border: 2px solid #fff;
+    border: 2px solid #f3f3f3;
     border-radius: 4px;
     outline: none;
+    @media (min-width: $container-width / 2) {
+      padding: 10px 20px;
+    }
+    &:hover {
+      cursor: pointer;
+    }
     &.selected {
       transform: scale(1.1);
       border: 2px solid $green;
@@ -196,11 +108,7 @@ body {
 }
 
 /* Result */
-.result {
-  background: #fff;
-  max-width: 500px;
-  margin: 40px auto 40px;
-  padding: 40px;
+.content {
   .button {
     font-size: 16px;
   }
