@@ -9,7 +9,8 @@
             v-for="platform in platforms"
             v-bind:key="platform.id"
             class="btn-platform"
-            v-on:click="selectedPlatform = platform.id"
+            :title="platform.name"
+            v-on:click="setPlatform(platform)"
           >
             <img :src="platform.logo">
           </button>
@@ -18,7 +19,7 @@
 
       <section class="content" v-show="section == 1">
         <div class="amount">
-          <label for="amount_input">Enter the amount of the ad:</label>
+          <label for="amount_input">What is the amount of the ad?</label>
           <div class="btn-group">
             <input type="number" placeholder="Amount" v-on:keyup.enter="process" v-model="amount">
             <input type="submit" value="Calculate" v-on:click="process">
@@ -29,7 +30,7 @@
       <section class="content" v-show="section == 2">
         <div v-if="offer && !loading">
           <p>Based on our recommendations and our secret algorithm, we advice you to send this message:</p>
-          <blockquote class="bubble" v-html="message"/>
+          <blockquote class="bubble" v-html="message" />
           <button class="button" v-on:click="toggleCopy">{{ copyButtonText }}</button>
           <a v-on:click="reset">Restart</a>
         </div>
@@ -43,6 +44,7 @@
 <script>
 import Loader from '@/components/Loader.vue'
 import Offer from '@/services/Offer'
+import { mapGetters } from 'vuex'
 
 export default {
   name: 'home',
@@ -55,24 +57,9 @@ export default {
       amount: undefined,
       loading: false,
       offer: undefined,
-      selectedPlatform: undefined,
       message: '',
       disableCopy: false,
-      copyButtonText: 'Copy',
-      platforms: {
-        'Gumtree': {
-          id: 0,
-          logo: require('@/assets/logo-gumtree.png')
-        },
-        'eBay': {
-          id: 1,
-          logo: require('@/assets/logo-ebay.jpg')
-        },
-        'Craigslist': {
-          id: 2,
-          logo: require('@/assets/logo-craigslist.jpg')
-        },
-      }
+      copyButtonText: 'Copy'
     }
   },
   watch: {
@@ -82,11 +69,17 @@ export default {
       }
     }
   },
+  computed: {
+    ...mapGetters(['platforms', 'selectedPlatform'])
+  },
   methods: {
+    setPlatform (platform) {
+      this.$store.commit('SET_PLATFORM', platform)
+    },
     reset () {
+      this.$store.commit('SET_PLATFORM', undefined)
       this.offer = undefined
       this.section = 0
-      this.selectedPlatform = undefined
       this.message = ''
       this.copyButtonText = 'Copy'
       this.disableCopy = false
@@ -98,10 +91,8 @@ export default {
         console.log('Please enter an amount')
       } else {
         this.offer = Offer.get(this.amount)
-        const platform = this.getPlatform();
-        this.message = `Hi there! 
-I saw your ${platform} ad, and I'd like to offer ${this.offer}, cash, NOW!!!
-`
+        this.message = "Hi there!<br>I saw your " + this.selectedPlatform.name + " ad,"
+          + "and I'd like to offer " + this.offer + ", cash, NOW!!!"
       }
       setTimeout(() => {
         this.loading = false
@@ -111,15 +102,6 @@ I saw your ${platform} ad, and I'd like to offer ${this.offer}, cash, NOW!!!
       this.$copyText(this.message)
       this.disableCopy = true
       this.copyButtonText = 'Copied'
-    },
-    getPlatform() {
-      switch (this.selectedPlatform) {
-        case 0: return 'Gumtree'
-        case 1: return 'eBay'
-        case 2: return 'Craigslist'
-        default:
-          return '-'
-      }
     }
   }
 }
