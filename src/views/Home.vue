@@ -31,6 +31,7 @@
           <p>Based on our recommendations and our secret algorithm, we advice you to send this message:</p>
           <blockquote class="bubble" v-html="message"/>
           <button class="button" v-on:click="toggleCopy">{{ copyButtonText }}</button>
+          <a v-on:click="reset">Restart</a>
         </div>
       </section>
     </div>
@@ -75,11 +76,6 @@ export default {
     }
   },
   watch: {
-    amount (newAmount, oldAmount) {
-      if (newAmount != oldAmount) {
-        this.reset()
-      }
-    },
     selectedPlatform (newPlatform) {
       if (newPlatform != undefined) {
         this.section = 1
@@ -89,6 +85,8 @@ export default {
   methods: {
     reset () {
       this.offer = undefined
+      this.section = 0
+      this.selectedPlatform = undefined
       this.message = ''
       this.copyButtonText = 'Copy'
       this.disableCopy = false
