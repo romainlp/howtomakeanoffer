@@ -8,13 +8,3 @@
     </div>
   </div>
 </template>
-
-<style lang="scss">
-.page {
-  position: relative;
-  text-align: center;
-  h1 {
-    margin: 1.5em 0 1em;
-  }
-}
-</style>

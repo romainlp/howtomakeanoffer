@@ -10,19 +10,19 @@ export default new Vuex.Store({
         id: 1,
         name: 'Gumtree',
         slug: 'gumtree',
-        logo: require('@/assets/logo-gumtree.png')
+        logo: require('@/assets/logo-gumtree.svg')
       },
       {
         id: 2,
         name: 'eBay',
         slug: 'ebay',
-        logo: require('@/assets/logo-ebay.jpg')
+        logo: require('@/assets/logo-ebay.svg')
       },
       {
         id: 3,
         name: 'Craigslist',
         slug: 'craigslist',
-        logo: require('@/assets/logo-craigslist.jpg')
+        logo: require('@/assets/logo-craigslist.svg')
       }
     ],
     selectedPlatform: undefined,
