@@ -10,7 +10,7 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import {
   faClipboard,
   faClipboardCheck,
-  faRedo,
+  faUndo,
 } from '@fortawesome/free-solid-svg-icons'
 
 Vue.config.productionTip = false
@@ -19,7 +19,7 @@ Vue.use(VueClipboard)
 Vue.directive('in-viewport', inViewportDirective)
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 
-library.add(faClipboard, faClipboardCheck, faRedo)
+library.add(faClipboard, faClipboardCheck, faUndo)
 
 new Vue({
   router,
