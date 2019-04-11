@@ -132,11 +132,6 @@ I saw your ${platform} ad, and I'd like to offer ${this.offer}, cash, NOW!!!
 
 <style lang="scss">
 /**
- * Variables
- */
-$green: #2d8327;
-
-/**
  * Common styles
  */
 .button {
@@ -205,64 +200,6 @@ body {
   white-space: pre-wrap;
   text-align: left;
 }
-/**
- * Header
- */
-header {
-  position: fixed;
-  background: #fff;
-  width: calc(100vw - 40px);
-  top: 0;
-  left: 0;
-  padding: 20px;
-  z-index: 20;
-  .left {
-    float: left;
-  }
-  .right {
-    float: right;
-  }
-  img {
-    height: 38px;
-    float: left;
-    margin-right: 5px;
-    transform: rotate(180deg);
-  }
-}
-h1 {
-  position: relative;
-  display: inline-block;
-  clear: both;
-  font-size: 32px;
-  line-height: 32px;
-  font-weight: 300;
-  margin: 0;
-  span {
-    font-size: 12px;
-    font-weight: bold;
-    color: $green;
-  }
-  &:after {
-    content: '';
-    background: rgba($green, 0.08);
-    width: 100%;
-    height: 20px;
-    display: block;
-    bottom: 0;
-    position: absolute;
-    left: 20px;
-  }
-}
-h2 {
-  display: block;
-  font-style: italic;
-  font-size: 16px;
-  margin-left: 20px;
-  float: right;
-  line-height: 38px;
-  margin: 0;
-}
-
 .content {
   max-width: 800px;
   margin: 0 auto;
@@ -305,11 +242,4 @@ input[type="submit"] {
     border-color: rgba($green, 0.9);
   }
 }
-
-.footer {
-  margin: 20px auto;
-  max-width: 800px;
-  text-align: center;
-}
-
 </style>

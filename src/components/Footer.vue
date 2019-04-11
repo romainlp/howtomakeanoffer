@@ -11,3 +11,11 @@ export default {
     name: 'Header'
 }
 </script>
+
+<style lang="scss">
+.footer {
+  margin: 20px auto;
+  max-width: 800px;
+  text-align: center;
+}
+</style>
