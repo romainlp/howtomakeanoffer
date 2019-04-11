@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app" v-bind:class="cssContext">
     <Header />
     <router-view></router-view>
   </div>
@@ -7,11 +7,30 @@
 
 <script>
 import Header from '@/components/Header.vue'
+import { mapGetters } from 'vuex'
 
 export default {
   name: "app",
   components: {
     Header
+  },
+  data () {
+    return {
+      cssContext: 'default'
+    }
+  },
+  computed: {
+    ...mapGetters(['selectedPlatform'])
+  },
+  watch: {
+    selectedPlatform (newValue, oldValue) {
+      console.log(newValue, oldValue)
+      if (newValue != undefined) {
+        this.cssContext = newValue.slug
+      } else {
+        this.cssContext = 'default'
+      }
+    }
   }
 };
 </script>
@@ -51,6 +70,7 @@ body {
     height: 350px;
     transform: rotate(30deg);
     z-index: 0;
+    transition: all .3s ease-in-out;
   }
   &:before {
     top: 50px;
@@ -59,6 +79,26 @@ body {
   &:after {
     bottom: -50px;
     right: -150px;
+  }
+  &.gumtree {
+    &:before,
+    &:after {
+      background: rgba($green, 0.1);
+    }
+  }
+  &.ebay {
+    &:before {
+      background: rgba(#E53238, 0.1);
+    }
+    &:after {
+      background: rgba(#0064D2, 0.1);
+    }
+  }
+  &.craigslist {
+    &:before,
+    &:after {
+      background: rgba(#6f2b7a, 0.1);
+    }
   }
 }
 .content {
@@ -133,7 +173,6 @@ body {
 }
 div.amount {
   display: inline-block;
-  margin: 20px auto;
 }
 label {
   display: block;
