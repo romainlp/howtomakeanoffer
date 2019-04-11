@@ -3,7 +3,6 @@
     <ul>
       <li><router-link to="/">Get an offer</router-link></li>
       <li><router-link to="/about">About</router-link></li>
-      <li><router-link to="/contributors">Contributors</router-link></li>
     </ul>
   </nav>
 </template>
