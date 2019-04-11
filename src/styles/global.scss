@@ -1,4 +1,4 @@
- /**
+/**
  * Common styles
  */
 * {
@@ -6,8 +6,8 @@
 }
 html {
   max-width: 100vw;
-  overflow-x: hidden;
-  overflow-y: auto;
+  overflow: hidden;
+  // overflow-y: auto;
 }
 body {
   background: #f4f4f4;
@@ -16,7 +16,7 @@ body {
   max-width: 100vw;
 }
 #app {
-  font-family: "Avenir", $font-system;
+  font-family: 'Avenir', $font-system;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
@@ -40,6 +40,26 @@ body {
   &:after {
     bottom: -50px;
     right: -150px;
+  }
+  &.gumtree {
+    &:before,
+    &:after {
+      background: rgba($green, 0.1);
+    }
+  }
+  &.ebay {
+    &:before {
+      background: rgba(#e53238, 0.1);
+    }
+    &:after {
+      background: rgba(#0064d2, 0.1);
+    }
+  }
+  &.craigslist {
+    &:before,
+    &:after {
+      background: rgba(#6f2b7a, 0.1);
+    }
   }
 }
 .content {

@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app" v-bind:class="cssContext">
     <Header />
     <router-view></router-view>
   </div>
@@ -7,11 +7,30 @@
 
 <script>
 import Header from '@/components/Header.vue'
+import { mapGetters } from 'vuex'
 
 export default {
   name: "app",
   components: {
     Header
+  },
+  data () {
+    return {
+      cssContext: 'default'
+    }
+  },
+  computed: {
+    ...mapGetters(['selectedPlatform'])
+  },
+  watch: {
+    selectedPlatform (newValue, oldValue) {
+      console.log(newValue, oldValue)
+      if (newValue != undefined) {
+        this.cssContext = newValue.slug
+      } else {
+        this.cssContext = 'default'
+      }
+    }
   }
 };
 </script>

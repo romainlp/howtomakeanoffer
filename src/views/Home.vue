@@ -8,7 +8,8 @@
             v-for="platform in platforms"
             v-bind:key="platform.id"
             class="btn-platform"
-            v-on:click="selectedPlatform = platform.id"
+            :title="platform.name"
+            v-on:click="setPlatform(platform)"
           >
             <img :src="platform.logo">
           </button>
@@ -17,7 +18,7 @@
 
       <section class="content" v-show="section == 1">
         <div class="amount">
-          <label for="amount_input">Enter the amount of the ad:</label>
+          <label for="amount_input">What is the amount of the ad?</label>
           <div class="btn-group">
             <input type="number" placeholder="Amount" v-on:keyup.enter="process" v-model="amount">
             <input type="submit" value="Calculate" v-on:click="process">
@@ -28,7 +29,7 @@
       <section class="content" v-show="section == 2">
         <div class="result" v-if="offer && !loading">
           <p>Based on our recommendations and our secret algorithm, we advice you to send this message:</p>
-          <blockquote class="bubble" v-html="message"/>
+          <blockquote class="bubble" v-html="message" />
           <button class="button" v-on:click="toggleCopy">{{ copyButtonText }}</button>
           <a v-on:click="reset">Restart</a>
         </div>
@@ -40,8 +41,9 @@
 </template>
 
 <script>
-import Loader from "@/components/Loader.vue";
-import Offer from "@/services/Offer";
+import Loader from '@/components/Loader.vue'
+import Offer from '@/services/Offer'
+import { mapGetters } from 'vuex'
 
 export default {
   name: "home",
@@ -54,25 +56,10 @@ export default {
       amount: undefined,
       loading: false,
       offer: undefined,
-      selectedPlatform: undefined,
-      message: "",
+      message: '',
       disableCopy: false,
-      copyButtonText: "Copy",
-      platforms: {
-        Gumtree: {
-          id: 0,
-          logo: require("@/assets/logo-gumtree.svg")
-        },
-        eBay: {
-          id: 1,
-          logo: require("@/assets/logo-ebay.svg")
-        },
-        Craigslist: {
-          id: 2,
-          logo: require("@/assets/logo-craigslist.svg")
-        }
-      }
-    };
+      copyButtonText: 'Copy'
+    }
   },
   watch: {
     selectedPlatform(newPlatform) {
@@ -81,14 +68,20 @@ export default {
       }
     }
   },
+  computed: {
+    ...mapGetters(['platforms', 'selectedPlatform'])
+  },
   methods: {
-    reset() {
-      this.offer = undefined;
-      this.section = 0;
-      this.selectedPlatform = undefined;
-      this.message = "";
-      this.copyButtonText = "Copy";
-      this.disableCopy = false;
+    setPlatform (platform) {
+      this.$store.commit('SET_PLATFORM', platform)
+    },
+    reset () {
+      this.$store.commit('SET_PLATFORM', undefined)
+      this.offer = undefined
+      this.section = 0
+      this.message = ''
+      this.copyButtonText = 'Copy'
+      this.disableCopy = false
     },
     process() {
       this.loading = true;
@@ -96,38 +89,25 @@ export default {
       if (undefined === this.amount) {
         console.log("Please enter an amount");
       } else {
-        this.offer = Offer.get(this.amount);
-        const platform = this.getPlatform();
-        this.message = `Hi there! 
-I saw your ${platform} ad, and I'd like to offer ${this.offer}, cash, NOW!!!
-`;
+        this.offer = Offer.get(this.amount)
+        this.message = "Hi there!<br>I saw your " + this.selectedPlatform.name + " ad,"
+          + "and I'd like to offer " + this.offer + ", cash, NOW!!!"
       }
       setTimeout(() => {
         this.loading = false;
       }, 2000);
     },
-    toggleCopy() {
-      this.$copyText(this.message);
-      this.disableCopy = true;
-      this.copyButtonText = "Copied";
-    },
-    getPlatform() {
-      switch (this.selectedPlatform) {
-        case 0:
-          return "Gumtree";
-        case 1:
-          return "eBay";
-        case 2:
-          return "Craigslist";
-        default:
-          return "-";
-      }
+    toggleCopy () {
+      this.$copyText(this.message)
+      this.disableCopy = true
+      this.copyButtonText = 'Copied'
     }
   }
 };
 </script>
 
 <style lang="scss">
+
 /* Workflow */
 .workflow {
   padding-top: 40px;
@@ -147,7 +127,7 @@ I saw your ${platform} ad, and I'd like to offer ${this.offer}, cash, NOW!!!
 /* Platforms */
 .platforms {
   display: inline-flex;
-  max-width: $container-width / 2;
+  max-width: 519px;
   img {
     width: 100%;
   }
