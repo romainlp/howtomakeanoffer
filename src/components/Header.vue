@@ -52,9 +52,13 @@ header {
   img {
     height: 38px;
     margin-right: 5px;
-    transform: rotate(180deg);
   }
   box-shadow: 0 1px 3px rgba(27, 31, 35, 0.1);
+}
+.left {
+  @media (min-width: $container-width / 2) {
+    display: inline-flex;
+  }
 }
 h1 {
   position: relative;
