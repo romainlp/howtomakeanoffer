@@ -23,8 +23,7 @@ export default {
     ...mapGetters(['selectedPlatform'])
   },
   watch: {
-    selectedPlatform (newValue, oldValue) {
-      console.log(newValue, oldValue)
+    selectedPlatform (newValue) {
       if (newValue != undefined) {
         this.cssContext = newValue.slug
       } else {
