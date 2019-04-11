@@ -1,3 +1,11 @@
+@import '@/styles/_transitions.scss';
+
+/* Platforms styles */
+@import '@/styles/platforms/_ebay.scss';
+@import '@/styles/platforms/_facebook.scss';
+@import '@/styles/platforms/_craigslist.scss';
+@import '@/styles/platforms/_gumtree.scss';
+
 /**
  * Common styles
  */
@@ -14,13 +22,13 @@ body {
   font-family: 'Avenir', $font-system;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  color: #2c3e50;
+  color: $text-color;
   font-size: 16px;
   &:before,
   &:after {
     content: '';
     position: fixed;
-    background: rgba($green, 0.1);
+    background: rgba($text-color, 0.1);
     width: 350px;
     height: 350px;
     transform: rotate(30deg);
@@ -35,24 +43,12 @@ body {
     bottom: -50px;
     right: -150px;
   }
-  &.gumtree {
-    &:before,
-    &:after {
-      background: rgba($green, 0.1);
-    }
-  }
-  &.ebay {
+  &.hasContext {
     &:before {
-      background: rgba(#e53238, 0.1);
+      transform: translateY(-50px) rotate(30deg);
     }
     &:after {
-      background: rgba(#0064d2, 0.1);
-    }
-  }
-  &.craigslist {
-    &:before,
-    &:after {
-      background: rgba(#6f2b7a, 0.1);
+      transform: translateY(50px) rotate(30deg)
     }
   }
 }
@@ -90,10 +86,10 @@ main {
     position: relative;
     flex: 1 1 auto;
     padding: 10px 20px;
-    font-size: 15px;
+    font-size: 16px;
     line-height: 30px;
     @media (min-width: $container-width) {
-      font-size: 20px;
+      font-size: 16px;
       line-height: 40px;
     }
     &:first-child {

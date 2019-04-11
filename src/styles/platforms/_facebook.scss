@@ -1,0 +1,14 @@
+#app.facebook {
+  &:before,
+  &:after {
+    background: rgba($facebook, .8);
+  }
+  input[type="submit"] {
+    background-color: $facebook;
+    border-color: $facebook;
+    font-weight: bold;
+    &:hover {
+      background-color: rgba($facebook, 0.8);
+    }
+  }
+}

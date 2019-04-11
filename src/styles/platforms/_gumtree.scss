@@ -1,0 +1,14 @@
+#app.gumtree {
+  &:before,
+  &:after {
+    background: rgba($green, 0.8);
+  }
+  input[type="submit"] {
+    background-color: $gumtree;
+    border-color: $gumtree;
+    font-weight: bold;
+    &:hover {
+      background-color: rgba($gumtree, 0.8);
+    }
+  }
+}

@@ -1,0 +1,16 @@
+#app.ebay {
+  &:before {
+    background: rgba($ebay1, 0.8);
+  }
+  &:after {
+    background: rgba($ebay2, 0.8);
+  }
+  input[type="submit"] {
+    background-color: $ebay3;
+    border-color: $ebay3;
+    font-weight: bold;
+    &:hover {
+      background-color: rgba($ebay3, 0.8);
+    }
+  }
+}

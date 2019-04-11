@@ -1,7 +1,9 @@
 <template>
   <div id="app" v-bind:class="cssContext">
     <Header />
-    <router-view></router-view>
+    <transition name="fade" mode="out-in">
+      <router-view></router-view>
+    </transition>
   </div>
 </template>
 
@@ -25,7 +27,7 @@ export default {
   watch: {
     selectedPlatform (newValue) {
       if (newValue != undefined) {
-        this.cssContext = newValue.slug
+        this.cssContext = newValue.slug + ' hasContext'
       } else {
         this.cssContext = 'default'
       }
