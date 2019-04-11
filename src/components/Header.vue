@@ -58,9 +58,13 @@ header {
         img {
             height: 38px;
             margin: 0 5px 0 0;
-            transform: rotate(180deg);
         }
     }
+  }
+}
+.left {
+  @media (min-width: $container-width / 2) {
+    display: inline-flex;
   }
 }
 h1 {
