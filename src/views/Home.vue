@@ -1,39 +1,39 @@
 <template>
-  <div class="home">
-    <div class="content">
-      <div class="amount">
+  <main class="home">
+      <section class="content">
         <label for="platform">What Platform are you Using?</label>
         <div class="platforms">
-          <button 
-            v-for="platform in platforms" 
+          <button
+            v-for="platform in platforms"
             v-bind:key="platform.id"
             class="btn-platform"
             v-on:click="offer_platform = platform.id"
             v-bind:class="{ 'selected': offer_platform == platform.id }"
-            >
-            <img :src="platform.logo" />
+          >
+            <img :src="platform.logo">
           </button>
         </div>
-      </div>
-    </div>
+      </section>
 
-    <div class="content">
-      <div class="amount">
-        <label for="amount_input">Enter the amount of the ad:</label>
-        <input type="number" placeholder="Amount" v-on:keyup.enter="process" v-model="amount" />
-        <input type="submit" value="Calculate" v-on:click="process" />
-      </div>
-      <div class="result" v-if="offer && !loading">
-        <p>Based on our recommendations and our secret algorithm, we advice you to send this message:</p>
-        <blockquote class="bubble" v-html="message" />
-        <button class="button" v-on:click="toggleCopy">{{ copyButtonText }}</button>
-      </div>
-    </div>
+      <section class="content">
+        <div class="amount">
+          <label for="amount_input">Enter the amount of the ad:</label>
+          <div class="btn-group">
+            <input type="number" placeholder="Amount" v-on:keyup.enter="process" v-model="amount">
+            <input type="submit" value="Calculate" v-on:click="process">
+          </div>
+        </div>
+        <div class="result" v-if="offer && !loading">
+          <p>Based on our recommendations and our secret algorithm, we advice you to send this message:</p>
+          <blockquote class="bubble" v-html="message"/>
+          <button class="button" v-on:click="toggleCopy">{{ copyButtonText }}</button>
+        </div>
+      </section>
 
-    <Footer />
+    <Footer/>
 
-    <Loader v-if="loading" message="We are currently processing your data, please wait..." />
-  </div>
+    <Loader v-if="loading" message="We are currently processing your data, please wait..."/>
+  </main>
 </template>
 
 <script>

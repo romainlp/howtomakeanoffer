@@ -1,14 +1,21 @@
 <template>
-    <header v-in-viewport>
-        <div class="left">
-        <img alt="Vue logo" src="../assets/logo.svg">
-        <h1>howtomakeanoffer<span>.com.au</span></h1>
-        </div>
-        <div class="right">
-        <h2>Get what you want, <span>cash</span>, <span>now</span></h2>
-        </div>
-        <Navigation />
-    </header>
+  <header v-in-viewport>
+    <div class="left">
+      <img alt="Vue logo" src="../assets/logo.svg">
+      <h1>
+        howtomakeanoffer
+        <span>.com.au</span>
+      </h1>
+    </div>
+    <div class="right">
+      <h2>
+        Get what you want,
+        <span>cash</span>,
+        <span>now</span>
+      </h2>
+    </div>
+    <Navigation />
+  </header>
 </template>
 
 <script>
@@ -22,22 +29,67 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
+/**
+ * Header
+ */
 header {
-    transition: all .3s ease-in-out;
-    &.above-viewport {
-        &:not(.in-viewport) {
-            position: fixed;
-            .right,
-            .left {
-                height: 0px;
-                overflow: hidden;
-                opacity: 0;
-            }
-            nav {
-                padding-top: 0;
-            }
-        }
+  // position: fixed; // Uncomment above to get fixed header again
+  width: 100vw;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 20;
+  padding: $gutter;
+  background: #fff;
+  text-align: center;
+  @media (min-width: $container-width) {
+    text-align: left;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  img {
+    height: 38px;
+    margin-right: 5px;
+    transform: rotate(180deg);
+  }
+  box-shadow: 0 1px 3px rgba(27, 31, 35, 0.1);
+}
+h1 {
+  position: relative;
+  display: inline-block;
+  clear: both;
+  font-size: 32px;
+  font-weight: 300;
+  margin: 0;
+  span {
+    display: none;
+  }
+  &:after {
+    content: "";
+    background: rgba($green, 0.08);
+    width: 100%;
+    height: 20px;
+    display: block;
+    bottom: 0;
+    position: absolute;
+  }
+  @media (min-width: $container-width / 2) {
+    span {
+      font-size: 12px;
+      font-weight: bold;
+      color: $green;
+      display: inline;
     }
+    &:after {
+      left: 20px;
+    }
+  }
+}
+h2 {
+  font-style: italic;
+  font-size: 16px;
+  margin: 0;
 }
 </style>

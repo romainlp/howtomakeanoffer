@@ -9,22 +9,39 @@
 import Header from '@/components/Header.vue'
 
 export default {
-  name: 'app',
+  name: "app",
   components: {
     Header
   }
-}
+};
 </script>
 
 <style lang="scss">
 /**
- * Variables
- */
-$green: #2d8327;
-
-/**
  * Common styles
  */
+* {
+  box-sizing: border-box;
+}
+body {
+  background: #f4f4f4;
+  padding: 0;
+  margin: 0;
+}
+#app {
+  font-family: "Avenir", $font-system;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #2c3e50;
+  font-size: 16px;
+}
+.content {
+  max-width: $container-width;
+  margin: 0 auto;
+  text-align: center;
+  margin: $gutter auto;
+  padding: 0 $gutter;
+}
 .button {
   appearance: none;
   border-radius: 4px;
@@ -33,31 +50,24 @@ $green: #2d8327;
   padding: 10px 20px;
   border: 0px;
 }
-body {
-  background: #f4f4f4;
-  // padding: 100px 0 0 0;
-  padding: 0;
-  margin: 0;
-  min-height: 8000px;
-}
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  color: #2c3e50;
-  font-size: 16px;
-}
+
+/* PLatforms */
 .platforms {
-  display: flex;
+  display: inline-flex;
+  max-width: $container-width / 2;
   img {
-    width: 75px;
+    width: 100%;
   }
   .btn-platform {
+    flex: 1 1 0;
     background-color: #fff;
     margin: 5px;
     border: none;
     transition: all 0.5s;
-    padding: 10px 20px;
+    padding: 10px;
+    @media (min-width: $container-width /2) {
+      padding: 10px 20px;
+    }
     border: 2px solid #fff;
     border-radius: 4px;
     outline: none;
@@ -67,6 +77,8 @@ body {
     }
   }
 }
+
+/* Result */
 .result {
   background: #fff;
   max-width: 500px;
@@ -94,69 +106,6 @@ body {
   white-space: pre-wrap;
   text-align: left;
 }
-/**
- * Header
- */
-header {
-  //position: fixed;
-  background: #fff;
-  width: calc(100vw - 40px);
-  top: 0;
-  left: 0;
-  padding: 20px;
-  z-index: 20;
-  .left {
-    float: left;
-  }
-  .right {
-    float: right;
-  }
-  img {
-    height: 38px;
-    float: left;
-    margin-right: 5px;
-    transform: rotate(180deg);
-  }
-}
-h1 {
-  position: relative;
-  display: inline-block;
-  clear: both;
-  font-size: 32px;
-  line-height: 32px;
-  font-weight: 300;
-  margin: 0;
-  span {
-    font-size: 12px;
-    font-weight: bold;
-    color: $green;
-  }
-  &:after {
-    content: '';
-    background: rgba($green, 0.08);
-    width: 100%;
-    height: 20px;
-    display: block;
-    bottom: 0;
-    position: absolute;
-    left: 20px;
-  }
-}
-h2 {
-  display: block;
-  font-style: italic;
-  font-size: 16px;
-  margin-left: 20px;
-  float: right;
-  line-height: 38px;
-  margin: 0;
-}
-
-.content {
-  max-width: 800px;
-  margin: 0 auto;
-  text-align: center;
-}
 div.amount {
   display: inline-block;
   margin: 20px auto;
@@ -167,38 +116,49 @@ label {
   font-weight: bold;
   margin-bottom: 20px;
 }
+.btn-group {
+  position: relative;
+  display: inline-flex;
+  vertical-align: middle;
+  > * {
+    position: relative;
+    flex: 1 1 auto;
+    padding: 10px 20px;
+    font-size: 15px;
+    line-height: 30px;
+    @media (min-width: $container-width) {
+      font-size: 20px;
+      line-height: 40px;
+    }
+    &:first-child {
+      border-radius: 4px 0 0 4px;
+    }
+    &:last-child {
+      border-radius: 0 4px 4px 0;
+    }
+  }
+}
 input[type="number"] {
-  padding: 10px 20px;
-  border-radius: 4px 0 0 4px;
-  line-height: 40px;
   border: 1px solid #d3d3d3;
   outline: none;
-  float: left;
   border-right: 0px;
-  font-size: 20px
+  @media (max-width: $container-width - 1) {
+    width: 60%;
+  }
 }
 input[type="submit"] {
-  float: left;
-  line-height: 40px;
-  padding: 10px 20px;
   appearance: none;
   border: 1px solid $green;
   background: $green;
+  @media (max-width: $container-width - 1) {
+    width: 40%;
+  }
   color: #fff;
-  font-size: 20px;
-  border-radius: 0 4px 4px 0;
-  transition: all .3s ease-in-out;
+  transition: all 0.3s ease-in-out;
   &:hover,
   &:focus {
     background-color: rgba($green, 0.9);
     border-color: rgba($green, 0.9);
   }
 }
-
-.footer {
-  margin: 20px auto;
-  max-width: 800px;
-  text-align: center;
-}
-
 </style>
