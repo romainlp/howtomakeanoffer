@@ -23,8 +23,7 @@ export default {
     ...mapGetters(['selectedPlatform'])
   },
   watch: {
-    selectedPlatform (newValue, oldValue) {
-      console.log(newValue, oldValue)
+    selectedPlatform (newValue) {
       if (newValue != undefined) {
         this.cssContext = newValue.slug
       } else {
@@ -107,6 +106,8 @@ body {
   text-align: center;
   margin: $gutter auto;
   padding: 0 $gutter;
+  position: relative;
+  z-index: 1;
 }
 .button {
   appearance: none;
