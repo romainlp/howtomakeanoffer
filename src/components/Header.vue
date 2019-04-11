@@ -1,5 +1,5 @@
 <template>
-    <header>
+    <header v-in-viewport>
         <div class="left">
         <img alt="Vue logo" src="../assets/logo.svg">
         <h1>howtomakeanoffer<span>.com.au</span></h1>

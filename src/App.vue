@@ -7,6 +7,7 @@
 
 <script>
 import Header from '@/components/Header.vue'
+
 export default {
   name: 'app',
   components: {
@@ -34,7 +35,9 @@ $green: #2d8327;
 }
 body {
   background: #f4f4f4;
-  padding: 100px 0 0 0;
+  // padding: 100px 0 0 0;
+  padding: 0;
+  margin: 0;
 }
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
@@ -94,7 +97,7 @@ body {
  * Header
  */
 header {
-  position: fixed;
+  //position: fixed;
   background: #fff;
   width: calc(100vw - 40px);
   top: 0;
