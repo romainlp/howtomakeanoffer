@@ -7,11 +7,17 @@
         <div class="right">
         <h2>Get what you want, <span>cash</span>, <span>now</span></h2>
         </div>
+        <Navigation />
     </header>
 </template>
 
 <script>
+import Navigation from '@/components/Navigation.vue'
+
 export default {
-    name: 'Header'
+    name: 'Header',
+    components: {
+        Navigation
+    }
 }
 </script>
