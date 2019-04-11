@@ -1,47 +1,49 @@
 <template>
   <main class="home">
     <div class="workflow">
-      <section class="content" v-show="section == 0">
-        <label for="platform">What platform are you using?</label>
-        <div class="platforms">
-          <button
-            v-for="platform in platforms"
-            v-bind:key="platform.id"
-            class="btn-platform"
-            :class="platform.slug"
-            :title="platform.name"
-            v-on:click="setPlatform(platform)"
-          >
-            <img :src="platform.logo">
-          </button>
-        </div>
-      </section>
+        <section class="content">
+            <div v-if="section == 0">
+              <label for="platform">What platform are you using?</label>
+              <div class="platforms">
+                <button
+                  v-for="platform in platforms"
+                  v-bind:key="platform.id"
+                  class="btn-platform"
+                  :class="platform.slug"
+                  :title="platform.name"
+                  v-on:click="setPlatform(platform)"
+                >
+                  <img :src="platform.logo">
+                </button>
+              </div>
+            </div>
 
-      <section class="content" v-show="section == 1">
-        <div class="amount">
-          <label for="amount_input">What is the amount of the ad?</label>
-          <div class="btn-group">
-            <input type="number" placeholder="Amount" v-on:keyup.enter="process" v-model="amount">
-            <input type="submit" value="Calculate" v-on:click="process">
+          <div v-if="section == 1">
+            <div class="amount">
+              <label for="amount_input">What is the amount of the ad?</label>
+              <div class="btn-group">
+                <input type="number" placeholder="Amount" v-on:keyup.enter="process" v-model="amount">
+                <input type="submit" value="Calculate" v-on:click="process">
+              </div>
+            </div>
           </div>
-        </div>
-      </section>
 
-      <section class="content" v-show="section == 2">
-        <div class="result" v-if="offer && !loading">
-          <p>Based on our recommendations and our secret algorithm, we advice you to send this message:</p>
-          <blockquote class="bubble" v-html="message" />
-          <button class="button" v-on:click="toggleCopy">
-            <font-awesome-icon v-if="!disableCopy" icon="clipboard"></font-awesome-icon>
-            <font-awesome-icon v-else icon="clipboard-check"></font-awesome-icon>
-            {{ copyButtonText }}
-          </button>
-          <button class="button button-outline" v-on:click="reset">
-            <font-awesome-icon icon="undo"></font-awesome-icon>
-            Restart
-          </button>
-        </div>
-      </section>
+          <div class="content" v-if="section == 2">
+            <div class="result" v-if="offer && !loading">
+              <p>Based on our recommendations and our secret algorithm, we advice you to send this message:</p>
+              <blockquote class="bubble" v-html="message" />
+              <button class="button" v-on:click="toggleCopy">
+                <font-awesome-icon v-if="!disableCopy" icon="clipboard"></font-awesome-icon>
+                <font-awesome-icon v-else icon="clipboard-check"></font-awesome-icon>
+                {{ copyButtonText }}
+              </button>
+              <button class="button button-outline" v-on:click="reset">
+                <font-awesome-icon icon="redo"></font-awesome-icon>
+                Restart
+              </button>
+            </div>
+          </div>
+        </section>
     </div>
 
     <Loader v-if="loading" message="We are currently processing your data, please wait..."/>
@@ -110,6 +112,10 @@ export default {
       this.disableCopy = true
       this.copyButtonText = 'Copied'
     }
+  },
+  beforeRouteLeave (to, from, next) {
+    this.reset()
+    next()
   }
 };
 </script>
@@ -176,7 +182,7 @@ export default {
 /* Amount */
 .amount {
   input[type="number"] {
-    border: 1px solid #d3d3d3;
+    border: 2px solid #f3f3f3;
     outline: none;
     border-right: 0px;
     @media (max-width: $container-width - 1) {
@@ -185,18 +191,11 @@ export default {
   }
   input[type="submit"] {
     appearance: none;
-    border: 1px solid $green;
-    background: $green;
     @media (max-width: $container-width - 1) {
       width: 40%;
     }
     color: #fff;
     transition: all 0.3s ease-in-out;
-    &:hover,
-    &:focus {
-      background-color: rgba($green, 0.9);
-      border-color: rgba($green, 0.9);
-    }
   }
 }
 

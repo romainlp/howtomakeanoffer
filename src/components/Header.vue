@@ -3,10 +3,12 @@
     <div class="top">
       <div class="left">
         <img alt="Vue logo" src="../assets/logo.svg">
-        <h1>
+        <router-link to="/">
+          <h1>
             howtomakeanoffer
             <span>.com.au</span>
-        </h1>
+          </h1>
+        </router-link>
         </div>
         <div class="right">
         <h2>
@@ -74,6 +76,7 @@ h1 {
   font-size: 32px;
   font-weight: 300;
   margin: 0;
+  color: $text-color;
   span {
     display: none;
   }

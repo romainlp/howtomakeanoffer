@@ -1,0 +1,14 @@
+#app.craigslist {
+  &:before,
+  &:after {
+    background: rgba($craigslist, 0.8);
+  }
+  input[type="submit"] {
+    background-color: $craigslist;
+    border-color: $craigslist;
+    font-weight: bold;
+    &:hover {
+      background-color: rgba($craigslist, 0.8);
+    }
+  }
+}
