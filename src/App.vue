@@ -65,7 +65,7 @@ body {
   &:after {
     content: '';
     position: absolute;
-    background: rgba($green, 0.1);
+    background: #D3D3D3;
     width: 350px;
     height: 350px;
     transform: rotate(30deg);
