@@ -24,9 +24,16 @@ nav {
     margin: 0;
     padding: 0;
     list-style: none;
+    display: flex;
+    justify-content: space-between;
+    @media (min-width: $container-width) {
+      justify-content: left;
+      li {
+        margin-right: 30px;
+      }
+    }
     li {
       display: inline-block;
-      margin-right: 30px;
       a {
         color: rgba(#000, 0.8);
         text-decoration: none;
