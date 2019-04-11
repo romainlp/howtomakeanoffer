@@ -38,7 +38,7 @@
                 {{ copyButtonText }}
               </button>
               <button class="button button-outline" v-on:click="reset">
-                <font-awesome-icon icon="redo"></font-awesome-icon>
+                <font-awesome-icon icon="undo"></font-awesome-icon>
                 Restart
               </button>
             </div>
