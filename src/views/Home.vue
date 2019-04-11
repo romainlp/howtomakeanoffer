@@ -31,8 +31,15 @@
         <div class="result" v-if="offer && !loading">
           <p>Based on our recommendations and our secret algorithm, we advice you to send this message:</p>
           <blockquote class="bubble" v-html="message" />
-          <button class="button" v-on:click="toggleCopy">{{ copyButtonText }}</button>
-          <button class="button button-outline" v-on:click="reset">Restart</button>
+          <button class="button" v-on:click="toggleCopy">
+            <font-awesome-icon v-if="!disableCopy" icon="clipboard"></font-awesome-icon>
+            <font-awesome-icon v-else icon="clipboard-check"></font-awesome-icon>
+            {{ copyButtonText }}
+          </button>
+          <button class="button button-outline" v-on:click="reset">
+            <font-awesome-icon icon="redo"></font-awesome-icon>
+            Restart
+          </button>
         </div>
       </section>
     </div>
