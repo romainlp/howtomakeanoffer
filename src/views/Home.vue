@@ -8,6 +8,7 @@
             v-for="platform in platforms"
             v-bind:key="platform.id"
             class="btn-platform"
+            :class="platform.slug"
             :title="platform.name"
             v-on:click="setPlatform(platform)"
           >
@@ -143,6 +144,11 @@ export default {
     outline: none;
     @media (min-width: $container-width / 2) {
       padding: 10px 20px;
+    }
+    &.facebook {
+      img {
+        max-height: 28px;
+      }
     }
     &:hover {
       cursor: pointer;

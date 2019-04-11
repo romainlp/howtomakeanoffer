@@ -23,6 +23,12 @@ export default new Vuex.Store({
         name: 'Craigslist',
         slug: 'craigslist',
         logo: require('@/assets/logo-craigslist.svg')
+      },
+      {
+        id: 4,
+        name: 'Facebook',
+        slug: 'facebook',
+        logo: require('@/assets/logo-facebook.svg')
       }
     ],
     selectedPlatform: undefined,
