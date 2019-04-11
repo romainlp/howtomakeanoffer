@@ -42,6 +42,7 @@ header {
   right: 0;
   z-index: 20;
   background: #fff;
+  position: relative;
   border-bottom: 1px solid rgba(27, 31, 35, 0.1);
   .top {
     padding: $gutter;
