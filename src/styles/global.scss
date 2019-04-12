@@ -54,10 +54,12 @@ body {
 }
 .content {
   max-width: $container-width;
-  margin: 0 auto;
   text-align: center;
-  margin: $gutter auto;
   padding: 0 $gutter;
+  margin: $gutter;
+  @media (min-width: $container-width + $gutter * 2 ) {
+    margin: $gutter auto;
+  }
 }
 
 main {

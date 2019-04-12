@@ -24,7 +24,7 @@ nav {
     padding: 0;
     list-style: none;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     @media (min-width: $container-width) {
       justify-content: left;
       li {

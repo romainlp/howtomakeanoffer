@@ -17,11 +17,14 @@ export default {
 <style lang="scss">
 /* Workflow */
 .workflow {
-  padding-top: 40px;
+  padding-top: $gutter * 2;
   .content {
     background: #fff;
     border-radius: 4px;
-    padding: 40px;
+    padding: $gutter * 2 $gutter;
+    @media (min-width: $container-width) {
+      padding: $gutter * 2;
+    }
   }
     label {
     display: block;
@@ -99,6 +102,9 @@ export default {
   }
   p {
     font-weight: bold;
+    &:first-child {
+      margin-top: 0;
+    }
   }
   .message {
     font-size: 22px;
