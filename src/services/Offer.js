@@ -17,7 +17,7 @@ export default {
         let message = ''
 
         let 
-            unit = this.unit[locale],
+            unit = this.unit[locale].main,
             offer = 0
 
         if (amount >= 20) {

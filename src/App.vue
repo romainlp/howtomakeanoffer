@@ -31,6 +31,9 @@ export default {
   computed: {
     ...mapGetters(['selectedPlatform'])
   },
+  mounted () {
+    this.cssContext = this.selectedPlatform.slug
+  },
   watch: {
     selectedPlatform (newValue) {
       if (newValue != undefined) {
