@@ -18,11 +18,17 @@ export default new Router({
           path: '/',
           name: 'home',
           component: WorkflowPlatforms,
+          meta: { isWorkflow: true },
+          beforeEnter (to, from, next) {
+            store.commit('RESET')
+            next()
+          }
         },
         {
           path: 'amount',
           name: 'workflow-amount',
           component: WorkflowAmount,
+          meta: { isWorkflow: true },
           beforeEnter (to, from, next) {
             if (store.state.selectedPlatform == undefined) {
               next('/')
@@ -35,6 +41,7 @@ export default new Router({
           path: 'result',
           name: 'workflow-result',
           component: WorkflowResult,
+          meta: { isWorkflow: true },
           beforeEnter (to, from, next) {
             if (store.state.selectedPlatform == undefined) {
               next('/')
@@ -53,7 +60,11 @@ export default new Router({
       // route level code-splitting
       // this generates a separate chunk (about.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
-      component: () => import(/* webpackChunkName: "about" */ './views/About.vue')
+      component: () => import(/* webpackChunkName: "about" */ './views/About.vue'),
+      beforeEnter (to, from, next) {
+        store.commit('RESET')
+        next()
+      }
     }
   ]
 })
