@@ -2,21 +2,21 @@
   <main class="home">
     <div class="workflow">
         <section class="content">
-            <div v-if="section == 0">
-              <label for="platform">What platform are you using?</label>
-              <div class="platforms">
-                <button
-                  v-for="platform in platforms"
-                  v-bind:key="platform.id"
-                  class="btn-platform"
-                  :class="platform.slug"
-                  :title="platform.name"
-                  v-on:click="setPlatform(platform)"
-                >
-                  <img :src="platform.logo">
-                </button>
-              </div>
+          <div v-if="section == 0">
+            <label for="platform">What platform are you using?</label>
+            <div class="platforms">
+              <button
+                v-for="platform in platforms"
+                v-bind:key="platform.id"
+                class="btn-platform"
+                :class="platform.slug"
+                :title="platform.name"
+                v-on:click="setPlatform(platform)"
+              >
+                <img :src="platform.logo">
+              </button>
             </div>
+          </div>
 
           <div v-if="section == 1">
             <div class="amount">
@@ -28,7 +28,7 @@
             </div>
           </div>
 
-          <div class="content" v-if="section == 2">
+          <div v-if="section == 2">
             <div class="result" v-if="offer && !loading">
               <p>Based on our recommendations and our secret algorithm, we advice you to send this message:</p>
               <blockquote class="bubble" v-html="message" />
@@ -124,11 +124,14 @@ export default {
 
 /* Workflow */
 .workflow {
-  padding-top: 40px;
+  padding-top: $gutter * 2;
   .content {
     background: #fff;
     border-radius: 4px;
-    padding: 40px;
+    padding: $gutter * 2 $gutter;
+    @media (min-width: $container-width) {
+      padding: $gutter * 2;
+    }
   }
     label {
     display: block;
@@ -206,6 +209,9 @@ export default {
   }
   p {
     font-weight: bold;
+    &:first-child {
+      margin-top: 0;
+    }
   }
   .message {
     font-size: 22px;
