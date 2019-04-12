@@ -32,6 +32,7 @@ export default new Vuex.Store({
       }
     ],
     selectedPlatform: undefined,
+    loading: false
   },
   getters : {
     platforms : state => {
@@ -39,12 +40,21 @@ export default new Vuex.Store({
     },
     selectedPlatform : state => {
       return state.selectedPlatform
+    },
+    loading : state => {
+      return state.loading
     }
   },
   mutations: {
     SET_PLATFORM : (state, payload) => {
       state.selectedPlatform = payload
+    },
+    /**
+     * @todo check if boolean
+     */
+    SET_LOADING : (state, payload) => {
+      state.loading = payload
     }
   },
-  actions : {}  
+  actions : {}
 })
