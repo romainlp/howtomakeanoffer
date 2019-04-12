@@ -20,7 +20,7 @@ export default {
         }
 
         message = "Hi there! I saw your " + selectedPlatform.name + " ad,"
-        + "and I'd like to offer " + offer + unit + ", cash, NOW!!!"
+        + " and I'd like to offer " + offer + unit + ", cash, NOW!!!"
 
         return message
     },

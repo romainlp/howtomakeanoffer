@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div v-if="loading">
+    <div v-if="loading" class="loading">
       <label>Currently doing the magic...</label>
     </div>
     <div v-else>
@@ -51,11 +51,23 @@ export default {
 
 <style lang="scss">
 .bubble {
-  border-radius: 25px;
+  border-radius: 4px;
   background: rgba($text-color, 0.1);
   padding: 20px 30px;
   text-align: left;
   font-style: italic;
   font-size: 22px;
+}
+.loading {
+  label {
+    margin-bottom: 0;
+  }
+}
+.button {
+  font-size: 16px;
+  padding: 15px 30px;
+  svg {
+    margin-right: 10px;
+  }
 }
 </style>

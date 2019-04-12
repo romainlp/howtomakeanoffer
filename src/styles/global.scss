@@ -24,6 +24,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   color: $text-color;
   font-size: 16px;
+  padding-bottom: 50px;
   &:before,
   &:after {
     content: '';
@@ -71,7 +72,7 @@ main {
 .button {
   appearance: none;
   border-radius: 4px;
-  background: $green;
+  background: $text-color;
   color: #fff;
   padding: 10px 20px;
   border: 0px;

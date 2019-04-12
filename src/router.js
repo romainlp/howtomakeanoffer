@@ -18,7 +18,7 @@ const router = new Router({
           path: '/',
           name: 'home',
           component: WorkflowPlatforms,
-          meta: { isWorkflow: true }
+          meta: { isWorkflow: false }
         },
         {
           path: 'amount',

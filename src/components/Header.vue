@@ -96,7 +96,7 @@ h1 {
   }
   &:after {
     content: "";
-    background: rgba($green, 0.08);
+    background: rgba($text-color, 0.08);
     width: 100%;
     height: 20px;
     display: block;
@@ -107,7 +107,7 @@ h1 {
     span {
       font-size: 12px;
       font-weight: bold;
-      color: $green;
+      color: $text-color;
       display: inline;
     }
     &:after {

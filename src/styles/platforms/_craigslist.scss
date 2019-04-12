@@ -3,6 +3,12 @@
   &:after {
     background: rgba($craigslist, 0.8);
   }
+  .before,
+  .after {
+    span {
+      background: rgba($craigslist, 0.3);
+    }
+  }
   input[type="submit"] {
     background-color: $craigslist;
     border-color: $craigslist;

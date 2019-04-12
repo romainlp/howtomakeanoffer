@@ -3,6 +3,12 @@
   &:after {
     background: rgba($facebook, .8);
   }
+  .before,
+  .after {
+    span {
+      background: rgba($facebook, 0.3);
+    }
+  }
   input[type="submit"] {
     background-color: $facebook;
     border-color: $facebook;

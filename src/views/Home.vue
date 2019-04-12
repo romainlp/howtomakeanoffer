@@ -2,7 +2,9 @@
   <main class="home">
     <div class="workflow">
       <section class="content">
-        <router-view></router-view>
+        <transition name="fade" mode="out-in">
+          <router-view></router-view>
+        </transition>
       </section>
     </div>
   </main>
