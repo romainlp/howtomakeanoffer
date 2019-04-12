@@ -45,20 +45,16 @@
           </div>
         </section>
     </div>
-
-    <Loader v-if="loading" message="We are currently processing your data, please wait..."/>
   </main>
 </template>
 
 <script>
-import Loader from '@/components/Loader.vue'
 import Offer from '@/services/Offer'
 import { mapGetters } from 'vuex'
 
 export default {
   name: "home",
   components: {
-    Loader
   },
   data() {
     return {
@@ -95,6 +91,7 @@ export default {
     },
     process() {
       this.loading = true;
+      this.$store.commit('SET_LOADING', true)
       this.section = 2;
       if (undefined === this.amount) {
         console.log("Please enter an amount");
@@ -105,7 +102,8 @@ export default {
       }
       setTimeout(() => {
         this.loading = false;
-      }, 2000);
+        this.$store.commit('SET_LOADING', false)
+      }, 4000);
     },
     toggleCopy () {
       this.$copyText(this.message)
