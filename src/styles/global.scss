@@ -58,6 +58,8 @@ body {
   text-align: center;
   padding: 0 $gutter;
   margin: $gutter;
+  position: relative;
+  z-index: 1;
   @media (min-width: $container-width + $gutter * 2 ) {
     margin: $gutter auto;
   }
