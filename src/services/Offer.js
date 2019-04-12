@@ -2,7 +2,10 @@
  * This is the secret algorithm
  */
 export default {
-    get(amount) {
+    async get(amount, selectedPlatform) {
+        await this.stall()
+        let message = ''
+
         let 
             unit = '$',
             offer = 0
@@ -16,6 +19,13 @@ export default {
             offer = Math.round((amount / 2) + (amount * 0.09))
         }
 
-        return offer + unit
+        message = "Hi there! I saw your " + selectedPlatform.name + " ad,"
+        + "and I'd like to offer " + offer + unit + ", cash, NOW!!!"
+
+        return message
+    },
+
+    async stall(stallTime = 2000) {
+        await new Promise(resolve => setTimeout(resolve, stallTime));
     }
 }

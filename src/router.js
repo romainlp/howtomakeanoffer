@@ -1,6 +1,10 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Home from './views/Home.vue'
+import store from '@/store'
+import Home from '@/views/Home.vue'
+import WorkflowPlatforms from '@/components/Workflow/Platforms.vue'
+import WorkflowAmount from '@/components/Workflow/Amount.vue'
+import WorkflowResult from '@/components/Workflow/Result.vue'
 
 Vue.use(Router)
 
@@ -8,8 +12,40 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'home',
-      component: Home
+      component: Home,
+      children: [
+        {
+          path: '/',
+          name: 'home',
+          component: WorkflowPlatforms,
+        },
+        {
+          path: 'amount',
+          name: 'workflow-amount',
+          component: WorkflowAmount,
+          beforeEnter (to, from, next) {
+            if (store.state.selectedPlatform == undefined) {
+              next('/')
+            } else {
+              next()
+            }
+          }
+        },
+        {
+          path: 'result',
+          name: 'workflow-result',
+          component: WorkflowResult,
+          beforeEnter (to, from, next) {
+            if (store.state.selectedPlatform == undefined) {
+              next('/')
+            } else if (store.state.amount == undefined) {
+              next({ name: 'workflow-amount' })
+            } else {
+              next()
+            }
+          }
+        }
+      ]
     },
     {
       path: '/about',

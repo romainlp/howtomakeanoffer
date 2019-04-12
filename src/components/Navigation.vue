@@ -36,7 +36,8 @@ nav {
       a {
         color: rgba(#000, 0.8);
         text-decoration: none;
-        &.router-link-exact-active {
+        &.router-link-exact-active,
+        &.router-link-active {
           font-weight: bold;
         }
       }

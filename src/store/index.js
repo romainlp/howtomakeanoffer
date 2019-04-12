@@ -32,17 +32,21 @@ export default new Vuex.Store({
       }
     ],
     selectedPlatform: undefined,
+    amount: undefined,
     loading: false
   },
   getters : {
-    platforms : state => {
+    platforms: state => {
       return state.platforms
     },
-    selectedPlatform : state => {
+    selectedPlatform: state => {
       return state.selectedPlatform
     },
-    loading : state => {
+    loading: state => {
       return state.loading
+    },
+    amount: state => {
+      return state.amount
     }
   },
   mutations: {
@@ -54,6 +58,9 @@ export default new Vuex.Store({
      */
     SET_LOADING : (state, payload) => {
       state.loading = payload
+    },
+    SET_AMOUNT: (state, payload) => {
+      state.amount = payload
     }
   },
   actions : {}
