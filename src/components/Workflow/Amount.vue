@@ -1,16 +1,33 @@
+<i18n>
+{
+  "en": {
+    "label": "What is the amount of the ad?",
+    "amount": "Amount",
+    "calculate": "Calculate"
+  },
+  "fr": {
+    "label": "Quel est le montant de l'annonce ?",
+    "amount": "Montant",
+    "calculate": "Calculer"
+  }
+}
+</i18n>
+
 <template>
   <div>
     <div class="amount">
-      <label for="amount_input">What is the amount of the ad?</label>
+      <label for="amount_input">{{ $t('label') }}</label>
       <div class="btn-group">
-        <input type="number" placeholder="Amount" v-on:keyup.enter="validate" v-model="amount">
-        <input type="submit" value="Calculate" v-on:click="validate">
+        <input type="number" :placeholder="$t('amount')" v-on:keyup.enter="validate" v-model="amount">
+        <input type="submit" :value="$t('calculate')" v-on:click="validate">
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import Localization from '@/mixins/Localization.js'
+
 export default {
   name: "WorkflowAmount",
   computed: {
@@ -23,6 +40,7 @@ export default {
       }
     }
   },
+  mixins: [Localization],
   methods: {
     validate () {
       this.$router.push({ name: 'workflow-result' })

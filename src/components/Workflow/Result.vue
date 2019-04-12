@@ -1,10 +1,27 @@
+<i18n>
+{
+  "en": {
+    "loading": "Currently doing the magic...",
+    "copy": "Copy",
+    "copied": "Copied",
+    "label": "Based on our recommendations and our secret algorithm, we advice you to send this message:"
+  },
+  "fr": {
+    "loading": "Veuillez patienter pendant que la magie s'oppère...",
+    "copy": "Copier",
+    "copied": "Copié",
+    "label": "En se basant sur nos recommendations et notre algorithme secret, nous vous conseillons d'envoyer le message suivant:"
+  }
+}
+</i18n>
+
 <template>
   <div>
     <div v-if="loading" class="loading">
-      <label>Currently doing the magic...</label>
+      <label>{{ $t('loading') }}</label>
     </div>
     <div v-else>
-      <label>Based on our recommendations and our secret algorithm, we advice you to send this message:</label>
+      <label>{{ $t('label') }}</label>
       <blockquote class="bubble" v-html="message" />
       <button class="button" v-on:click="toggleCopy">
         <font-awesome-icon v-if="!disableCopy" icon="clipboard"></font-awesome-icon>
@@ -18,12 +35,13 @@
 <script>
 import { mapGetters } from 'vuex'
 import Offer from '@/services/Offer'
+import Localization from '@/mixins/Localization.js'
 
 export default {
   name: "WorkflowResult",
   data () {
     return {
-      copyButtonText: 'Copy',
+      copyButtonText: this.$t('copy'),
       message: '',
       disableCopy: false
     }
@@ -31,19 +49,20 @@ export default {
   computed: {
     ...mapGetters(['selectedPlatform', 'amount', 'loading'])
   },
+  mixins: [Localization],
   mounted () {
     this.process()
   },
   methods: {
     async process () {
       this.$store.commit('SET_LOADING', true)
-      this.message = await Offer.get(this.amount, this.selectedPlatform)
+      this.message = await Offer.get(this.amount, this.selectedPlatform, this.locale)
       this.$store.commit('SET_LOADING', false)
     },
     toggleCopy () {
       this.$copyText(this.message)
       this.disableCopy = true
-      this.copyButtonText = 'Copied'
+      this.copyButtonText = this.$t('copied')
     }
   }
 }

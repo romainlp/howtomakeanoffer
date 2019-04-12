@@ -1,7 +1,12 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import VuexPersistence from 'vuex-persist'
 
 Vue.use(Vuex);
+
+const vuexLocal = new VuexPersistence({
+  storage: window.localStorage
+})
 
 export default new Vuex.Store({
   state: {
@@ -33,7 +38,8 @@ export default new Vuex.Store({
     ],
     selectedPlatform: undefined,
     amount: undefined,
-    loading: false
+    loading: false,
+    locale: undefined
   },
   getters : {
     platforms: state => {
@@ -47,6 +53,9 @@ export default new Vuex.Store({
     },
     amount: state => {
       return state.amount
+    },
+    locale: state => {
+      return state.locale
     }
   },
   mutations: {
@@ -65,7 +74,11 @@ export default new Vuex.Store({
     RESET: (state) => {
       state.amount = undefined,
       state.selectedPlatform = undefined
-    }
+    },
+    SET_LOCALE: (state, locale) => {
+      state.locale = locale
+    },
   },
-  actions : {}
+  actions : {},
+  plugins: [vuexLocal.plugin],
 })
