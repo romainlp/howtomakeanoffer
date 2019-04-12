@@ -8,7 +8,7 @@ import WorkflowResult from '@/components/Workflow/Result.vue'
 
 Vue.use(Router)
 
-export default new Router({
+const router = new Router({
   routes: [
     {
       path: '/',
@@ -18,11 +18,7 @@ export default new Router({
           path: '/',
           name: 'home',
           component: WorkflowPlatforms,
-          meta: { isWorkflow: true },
-          beforeEnter (to, from, next) {
-            store.commit('RESET')
-            next()
-          }
+          meta: { isWorkflow: true }
         },
         {
           path: 'amount',
@@ -60,11 +56,24 @@ export default new Router({
       // route level code-splitting
       // this generates a separate chunk (about.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
-      component: () => import(/* webpackChunkName: "about" */ './views/About.vue'),
-      beforeEnter (to, from, next) {
-        store.commit('RESET')
-        next()
-      }
+      component: () => import(/* webpackChunkName: "about" */ './views/About.vue')
+    },
+    {
+      path: '/guide',
+      name: 'guide',
+      // route level code-splitting
+      // this generates a separate chunk (about.[hash].js) for this route
+      // which is lazy-loaded when the route is visited.
+      component: () => import(/* webpackChunkName: "about" */ './views/Guide.vue')
     }
   ]
 })
+
+router.beforeEach((to, from, next) => {
+  if (!to.meta.isWorkflow) {
+    store.commit('RESET')
+  }
+  next()
+})
+
+export default router
