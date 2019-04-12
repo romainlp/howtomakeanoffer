@@ -53,6 +53,11 @@ export default {
   mounted () {
     this.process()
   },
+  watch: {
+    locale () {
+      this.process()
+    }
+  },
   methods: {
     async process () {
       this.$store.commit('SET_LOADING', true)

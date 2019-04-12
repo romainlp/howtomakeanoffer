@@ -15,7 +15,7 @@
 
 <template>
   <nav>
-    <ul>
+    <ul class="nav">
       <li><router-link :class="{'router-link-exact-active': isWorkflow }" to="/">{{ $t('getOffer') }}</router-link></li>
       <li><router-link to="/about">{{ $t('about') }}</router-link></li>
       <li><router-link to="/guide">{{ $t('howToBuy') }}</router-link></li>
@@ -76,8 +76,16 @@ nav {
         margin-right: 30px;
       }
     }
+    @media (max-width: 450px) {
+      display: block;
+      width: 100%;
+    }
     &.locale {
       float: right;
+      @media (max-width: 450px) {
+        float: none;
+        margin: 20px auto;
+      }
       li {
         margin: 0 5px;
         &:last-of-type {
@@ -97,8 +105,24 @@ nav {
         }
       }
     }
+    &.nav {
+      @media (max-width: 450px) {
+        float: none;
+      }
+      li {
+        @media (max-width: 450px) {
+          display: block;
+          width: 100%;
+          padding: 10px 0;
+        }
+      }
+    }
     li {
       display: inline-block;
+      justify-content: left;
+      li {
+        margin-right: 30px;
+      }
       a {
         color: rgba(#000, 0.8);
         text-decoration: none;
