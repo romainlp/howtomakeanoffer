@@ -3,6 +3,7 @@
     <ul>
       <li><router-link :class="{'router-link-exact-active': isWorkflow }" to="/">Get an offer</router-link></li>
       <li><router-link to="/about">About</router-link></li>
+      <li><router-link to="/guide">How to buy</router-link></li>
     </ul>
   </nav>
 </template>
