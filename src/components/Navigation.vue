@@ -1,7 +1,7 @@
 <template>
   <nav>
     <ul>
-      <li><router-link to="/">Get an offer</router-link></li>
+      <li><router-link :class="{'router-link-exact-active': isWorkflow }" to="/">Get an offer</router-link></li>
       <li><router-link to="/about">About</router-link></li>
     </ul>
   </nav>
@@ -9,7 +9,21 @@
 
 <script>
 export default {
-    name: 'Navigation'
+    name: 'Navigation',
+    data () {
+      return {
+        isWorkflow: false
+      }
+    },
+    watch: {
+      '$route' (to) {
+        if (to.meta.isWorkflow) {
+          this.isWorkflow = true
+        } else {
+          this.isWorkflow = false
+        }
+      }
+    }
 }
 </script>
 
@@ -36,8 +50,7 @@ nav {
       a {
         color: rgba(#000, 0.8);
         text-decoration: none;
-        &.router-link-exact-active,
-        &.router-link-active {
+        &.router-link-exact-active {
           font-weight: bold;
         }
       }

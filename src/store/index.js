@@ -61,6 +61,10 @@ export default new Vuex.Store({
     },
     SET_AMOUNT: (state, payload) => {
       state.amount = payload
+    },
+    RESET: (state) => {
+      state.amount = undefined,
+      state.selectedPlatform = undefined
     }
   },
   actions : {}
