@@ -60,11 +60,20 @@ body {
   margin: $gutter;
   position: relative;
   z-index: 1;
+  background: #fff;
+  border-radius: 4px;
+  padding: 30px;
   @media (min-width: $container-width + $gutter * 2 ) {
     margin: $gutter auto;
   }
+  ul {
+    display: inline-block;
+    margin: 1em 0;
+    li {
+      text-align: left;
+    }
+  }
 }
-
 main {
   position: relative;
   z-index: 1;

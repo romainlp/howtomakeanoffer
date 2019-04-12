@@ -21,18 +21,3 @@
     </div>
   </div>
 </template>
-
-<style lang="scss">
-.content {
-  background: #fff;
-  border-radius: 4px;
-  padding: 30px;
-  ul {
-    display: inline-block;
-    margin: 1em 0;
-    li {
-      text-align: left;
-    }
-  }
-}
-</style>
