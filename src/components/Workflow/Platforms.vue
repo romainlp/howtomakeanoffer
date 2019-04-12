@@ -1,6 +1,17 @@
+<i18n>
+{
+  "en": {
+    "label": "What platform are you using?"
+  },
+  "fr": {
+    "label": "Sur quel site voulez-vous acheter ?"
+  }
+}
+</i18n>
+
 <template>
   <div>
-    <label for="platform">What platform are you using?</label>
+    <label for="platform">{{ $t('label')}}</label>
     <div class="platforms">
       <button
         v-for="platform in platforms"
@@ -17,6 +28,7 @@
 </template>
 
 <script>
+import Localization from '@/mixins/Localization.js'
 import { mapGetters } from 'vuex'
 
 export default {
@@ -29,6 +41,7 @@ export default {
   computed: {
     ...mapGetters(['platforms'])
   },
+  mixins: [Localization],
   methods: {
     setPlatform (platform) {
       this.$store.commit('SET_PLATFORM', platform)
