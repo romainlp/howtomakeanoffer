@@ -32,7 +32,7 @@ export default {
     ...mapGetters(['selectedPlatform'])
   },
   mounted () {
-    this.cssContext = this.selectedPlatform.slug
+    this.cssContext = this.selectedPlatform != undefined ?  this.selectedPlatform.slug : 'default'
   },
   watch: {
     selectedPlatform (newValue) {

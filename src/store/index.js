@@ -39,7 +39,7 @@ export default new Vuex.Store({
     selectedPlatform: undefined,
     amount: undefined,
     loading: false,
-    locale: undefined
+    locale: 'en'
   },
   getters : {
     platforms: state => {

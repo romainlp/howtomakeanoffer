@@ -21,9 +21,9 @@ Vue.use(VueClipboard)
 Vue.directive('in-viewport', inViewportDirective)
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 
+console.log(store.state.locale == undefined ? 'en' : store.state.locale)
 const i18n = new VueI18n({
   locale: store.state.locale,
-  fallbackLocale: 'en',
   messages: {
     en: {
       // ...
